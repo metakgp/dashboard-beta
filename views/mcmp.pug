@@ -1,0 +1,74 @@
+extends layout
+
+block content
+  script(type='text/javascript').
+    var fuse;
+      var nextQuery = null;
+      var processing = false;
+      var currentQuery = null;
+      $(function() {
+      $('#query').focus();
+      var worker = new Worker('js/lib/worker2_js.js');
+      $.getJSON("data/finallist.json")
+      .success(function(json) {
+      worker.postMessage({type: 'data', data: json});
+      })
+      .error(function(jqxhr, status, err) {
+      console.log(jqxhr, status, err);
+      });
+      worker.onmessage = function(results) {
+      processing = false;
+      $('.sk-folding-cube').addClass('hidden');
+      displayResults(results.data);
+      if (nextQuery !== null) {
+      var query = nextQuery;
+      nextQuery = null;
+      search(query);
+      }
+      }
+      function displayResults(results) {
+      var html = ''
+      for (var i = 0; i < 20; ++i) {
+      html += '<tr><td><a href='+results[i].link+'>' + results[i].name +'</a> | <a>' + results[i].field +'</a> </td></tr>';
+      }
+      $('#results').html(html);
+      $('.result-link').click(function() {
+      ga('send', 'event', 'Result', 'click', $('#query').val().trim());
+      })
+      }
+      var search = _.debounce(function() {
+      var query = $('#query').val().trim();
+      if (query === '') {
+      $('#results-wrapper').html('');
+      return;
+      }
+      if (processing) {
+      nextQuery = query;
+      return;
+      }
+      if (query === currentQuery) {
+      return;
+      }
+      processing = true;
+      currentQuery = query;
+      $('.sk-folding-cube').removeClass('hidden');
+      worker.postMessage({type: 'query', query: query});
+      ga('send', 'event', 'Search', 'query', query);
+      }, 200);
+      $('#query').keydown(search);
+      });
+  .content
+      .container-fluid
+          .row
+            .col-md-12
+              .card
+                form
+                  input#query.form-control(type='text', name='email', placeholder='Enter the name of professor here')
+                |                             
+                .content.table-responsive.table-full-width
+                  table.table.table-hover.table-striped
+                    thead
+                      th Professors - Search Results
+                    |                                     
+                    tbody#results
+                  |                                 

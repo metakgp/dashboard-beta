@@ -1,0 +1,5 @@
+#main-card {
+	background: url(../images/paras.jpg) bottom;
+	background-size: cover;
+	min-height: 90vh;
+}
