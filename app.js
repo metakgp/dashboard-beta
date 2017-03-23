@@ -38,8 +38,15 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+
+const wikiController = require('./controllers/wiki');
 const mfqpController = require('./controllers/mfqp');
 const mcmpController = require('./controllers/mcmp');
+const naaradController = require('./controllers/naarad');
+const gyftController = require('./controllers/gyft');
+const cabshareController = require('./controllers/cabshare');
+const driverstatController = require('./controllers/driverstat');
+const buysellController = require('./controllers/buysell');
 
 /**
  * API keys and Passport configuration.
@@ -144,9 +151,14 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 /**
  * Secondary app routes
  */
+app.get('/wiki', wikiController.getWiki);
 app.get('/mfqp', mfqpController.getMfqp);
 app.get('/mcmp', mcmpController.getMcmp);
-
+app.get('/naarad', naaradController.getNaarad);
+app.get('/gyft', gyftController.getGyft);
+app.get('/cabshare', cabshareController.getCabShare);
+app.get('/driverstat', driverstatController.getDriverStat);
+app.get('/buysell', buysellController.getBuySell);
 
 /**
  * API examples routes.

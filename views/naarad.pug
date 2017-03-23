@@ -1,0 +1,122 @@
+extends layout
+
+block content
+  style.
+    .modal-body {
+      max-height: calc(100vh - 210px);
+      overflow-y: auto;
+      }
+      .modal-backdrop {
+      display: none;
+      z-index: 0 !important;
+      }
+  div(ng-controller='naaradDataController')
+    .container-fluid
+        .row
+            .col-md-12
+              .card
+                .header
+                  h4.title KGPian Newsfeed
+                  // <p class="category">Here is a subtitle for this table</p>
+                |                                 
+                .content.table-responsive.table-full-width
+                  table#feed.table.table-striped.table-bordered(cellspacing='0', width='100%')
+                    thead
+                      tr
+                        th KGPian Newsfeed
+                    |                                         
+                    tbody
+                      tr(ng-repeat='post in naaradData')
+                        td
+                          .card.text-xs-center.animated.bounceInUp(style='visibility: visible; animation-name: bounceInUp;')
+                            .card-header(style='background: #3E4450; color: white;')
+                              | {{post.source}}
+                            |    
+                            .col-lg-2(ng-show='!isUndefinedOrNull({{post.pic}})')
+                              img.card-img-top.img-fluid.b-lazy(src='images/ripple.gif', data-src='{{post.pic}}')
+                            |                                                             
+                            .card-block
+                              p.card-text
+                                | {{post.short_message}}
+                                a.card-link(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show="!isUndefinedOrNull({{post.read_more}})&&!isUndefinedOrNull({{post.pic}})")  [...]
+                                a.card-link(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="0", ng-show="!isUndefinedOrNull({{post.read_more}})")  [...]
+                              |                                                                 
+                              a.card-link(href='#', data-toggle='modal', data-target='#big', data-source=' Technology Students Gymkhana ', data-message=" Dear Kgpians, Yes!+ Course is happening at IIT Kharagpur with the International Faculties Amit Periwal and Ritika Periwal from 23rd March to 26th March at Gymkhana. <br>  <br> Register Asap at  <br> tiny.cc/yesplusiitkgp (limited seats available !!) <br>  <br> You can also check out the video at :  <br>  <a href='https://www.youtube.com/watch?v=z_HsXuzAshc' target='_blank'> https://www.youtube.com/w... </a>  ", data-img='https://scontent.xx.fbcdn.net/v/t31.0-8/17218477_1606951102653252_8910126097758565628_o.jpg?oh=59cf7d9547a6bd6f3deba2dab3e82400&oe=5958391B')
+                                i.fa.fa-book.fa-lg
+                                |  Read more
+                              |                                                                 
+                              a.card-link(href='https://www.facebook.com/149405445074499_1606951102653252', target='_blank')
+                                i.fa.fa-facebook-official.fa-lg
+                                |  View post
+                            |                                                             
+                            .card-footer(style='background: #3E4450; color: white;')
+                              h6.card-subtitle.small Posted on 16-03-2017 at 09:39PM
+                  |                                     
+                  .bd-example
+                    #big.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+                      .modal-dialog.modal-lg(role='document')
+                        .modal-content
+                          .modal-header
+                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                              span(aria-hidden='true') &times;
+                            |                                                         
+                            h4#exampleModalLabel.modal-title New message
+                          |                                                     
+                          .modal-body
+                            .row
+                              #pic.col-lg-4.col-sm-12(style='border:none; opacity: 1;')
+                                .card
+                                  img.card-img-top.img-fluid(src='', width='100%', alt='')
+                              |                                                             
+                              #content.col-lg-8.col-sm-12
+                                .card.text-xs-center(style='border:none;')
+                                  .card-block
+                                    p.card-text
+                                      | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
+                          |                                                     
+                          .modal-footer
+                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+  //- script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
+  //- script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js')
+  script(src='js/lib/jquery.dataTables.min.js')
+  script(src='js/lib/dataTables.bootstrap4.min.js')
+  script(type='text/javascript').
+    $.extend( true, $.fn.dataTable.defaults, {
+      "ordering": false,
+      "bInfo" : false
+      } );
+      $(document).ready(function(){
+      $('#feed').DataTable();
+      });
+      $('#big').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var source = button.data('source') // Extract info from data-* attributes
+      var message = button.data('message')
+      var img = button.data('img')
+      var modal = $(this)
+      if(img==0) {
+      modal.find("#pic").removeClass("col-lg-4")
+      modal.find("#pic").removeClass("col-sm-12")
+      modal.find("#content").removeClass("col-lg-8")
+      modal.find("#content").addClass("col-lg-12")
+      modal.find("#pic").hide()
+      }
+      else {
+      modal.find("#pic").addClass("col-lg-4")
+      modal.find("#pic").addClass("col-sm-12")
+      modal.find("#content").removeClass("col-lg-12")
+      modal.find("#content").addClass("col-lg-8")
+      modal.find("#pic").show()
+      $('#big img').attr('src', img);
+      }
+      modal.find('.modal-title').text(source)
+      modal.find('.card-text').html(message)
+      })
+  //- script(src='https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.1/blazy.js')
+  script(src='js/lib/blazy.js')
+  script.
+    ;(function() {
+    var bLazy = new Blazy();
+    })();
+
+

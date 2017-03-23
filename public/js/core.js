@@ -1,1 +1,1 @@
-angular.module('dashboard', ['ngRoute', 'getSecurity', 'getSecurityService']);
+angular.module('dashboard', ['ngRoute', 'getSecurity', 'getSecurityService', 'fetchNaarad']);
