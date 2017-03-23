@@ -1394,6 +1394,9 @@ body > .navbar-collapse {
 
 .footer {
   background-color: #FFFFFF;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   line-height: 20px; }
   .footer nav > ul {
     list-style: none;
