@@ -23,9 +23,7 @@ exports.getLogin = (req, res) => {
  */
 exports.postLogin = (req, res, next) => {
   req.assert('email', 'Email is not valid').isEmail();
-  req.assert('rollno', 'Roll number cannot be blank').notEmpty();
   req.assert('password', 'Password cannot be blank').notEmpty();
-  req.assert('security', 'Secuity question cannot be blank').notEmpty();
   req.sanitize('email').normalizeEmail({ remove_dots: false });
 
   const errors = req.validationErrors();
@@ -76,9 +74,12 @@ exports.getSignup = (req, res) => {
  * Create a new local account.
  */
 exports.postSignup = (req, res, next) => {
+  console.log("Initiating signup");
   req.assert('email', 'Email is not valid').isEmail();
-  req.assert('password', 'Password must be at least 4 characters long').len(4);
-  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.assert('rollno', 'Invalid roll number').len(9);
+  req.assert('password', 'Password must be at least 1 character long').len(1);
+  req.assert('security', 'Answer to security question must be at least 1 character long').len(1);
+  // req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
   req.sanitize('email').normalizeEmail({ remove_dots: false });
 
   const errors = req.validationErrors();

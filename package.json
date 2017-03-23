@@ -14,6 +14,7 @@
     "postinstall": "npm rebuild node-sass"
   },
   "dependencies": {
+    "angular": "^1.6.3",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
@@ -54,6 +55,7 @@
     "passport-twitter": "^1.0.4",
     "paypal-rest-sdk": "^1.7.0",
     "pug": "^2.0.0-beta6",
+    "python-shell": "^0.4.0",
     "request": "^2.78.0",
     "stripe": "^4.12.0",
     "tumblr.js": "^1.1.1",

@@ -3,22 +3,33 @@ extends ../layout
 block content
   .page-header
     h3 Sign up
-  form.form-horizontal(id='signup-form', method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      label.col-sm-3.control-label(for='email') Email
-      .col-sm-7
-        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
-    .form-group
-      label.col-sm-3.control-label(for='password') Password
-      .col-sm-7
-        input.form-control(type='password', name='password', id='password', placeholder='Password', required)
-    .form-group
-      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
-      .col-sm-7
-        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', required)
-    .form-group
-      .col-sm-offset-3.col-sm-7
-        button.btn.btn-success(type='submit')
-          i.fa.fa-user-plus
-          | Signup
+  div(ng-controller='loginController')
+    form.form-horizontal(id='signup-form', method='POST', action="/signup")
+      input(type='hidden', name='_csrf', value=_csrf)
+      .form-group
+        label.col-sm-3.control-label(for='email') Email
+        .col-sm-7
+          input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+      .form-group
+        label.col-sm-3.control-label(for='rollno') Roll Number
+        .col-sm-7
+          input.form-control(ng-model='rollno', ng-model-options='{ debounce: 800 }', onclick='select()', type='text', name='rollno', id='rollno', placeholder='Roll Number', required)
+      .form-group
+        label.col-sm-3.control-label(for='password') Password
+        .col-sm-7
+          input.form-control(ng-model='pass', type='password', name='password', id='password', placeholder='Password', required)
+      label(ng-show='securityQuestion.length', style='font-size: 20px;') Security question: {{securityQuestion}}
+      .form-group
+        label.col-sm-3.control-label(for='security') Secuirty Question
+        .col-sm-7
+          input.form-control(ng-model='securityAnswer', type='password', name='security', id='security', placeholder='Security Question', required)
+      .form-group
+        .col-sm-offset-3.col-sm-7
+          button.btn.btn-success(ng-hide='ttsuccess.length' type='button', ng-click='makeTT()')
+            i.fa.fa-user-plus
+            | Verify with ERP
+      .form-group
+        .col-sm-offset-3.col-sm-7
+          button.btn.btn-success(ng-disabled='!ttsuccess.length', type='submit')
+            i.fa.fa-user-plus
+            | Signup

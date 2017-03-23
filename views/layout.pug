@@ -1,5 +1,5 @@
-doctype html(ng-app='dashboard', lang='en')
-html
+doctype html
+html(ng-app='dashboard', lang='en')
   head
       meta(charset='utf-8')
       |     
@@ -15,6 +15,7 @@ html
       meta(name='theme-color' content='#4DA5F4')
       meta(name='csrf-token', content=_csrf)
       link(href='css/style.css', rel='stylesheet')
+      link(href='css/main.css', rel='stylesheet')
       // Bootstrap core CSS
       link(href='css/bootstrap.min.css', rel='stylesheet')
       // Animation library for notifications
@@ -28,12 +29,17 @@ html
       |     
       link(href='css/pe-icon-7-stroke.css', rel='stylesheet')
       |
-      script(src='js/jquery-1.10.2.js', type='text/javascript')
+      script(src='/js/lib/jquery-3.1.1.min.js')
+      //- script(src='js/jquery-1.10.2.js', type='text/javascript')
       script(src='js/lib/string_score.min.js')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/fuse.js/2.6.1/fuse.min.js')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js')
+      script(src='js/controller/get-security.js')
+      script(src='js/services/auth-factory.js')
+      script(src='js/core.js')
+
 body
   .wrapper
     include partials/sidebar        
@@ -42,9 +48,8 @@ body
       block content          
       include partials/footer
   // Core JS Files
-  script(src='/js/main.js')
-  |     
   script(src='js/bootstrap.min.js', type='text/javascript')
+  script(src='/js/main.js')
   // Checkbox, Radio & Switch Plugins
   script(src='js/bootstrap-checkbox-radio-switch.js')
   // Charts Plugin
