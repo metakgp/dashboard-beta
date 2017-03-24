@@ -73,6 +73,8 @@ def main(args):
 
     soup = bs(r.text, 'html.parser')
     rows_head = soup.findAll('table')[2]
+    with open(args[4] + '/html/' + args[0] + '.html', 'w') as htmlfile:
+        htmlfile.writelines(str(rows_head))
     rows = rows_head.findAll('tr')
     times = []
 
