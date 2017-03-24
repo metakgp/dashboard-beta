@@ -61,14 +61,10 @@ block content
       .container-fluid
           .row
             .col-md-12
-              .card
-                form
-                  input#query.form-control(type='text', name='email', placeholder='Enter the name of professor here')
-                |                             
-                .content.table-responsive.table-full-width
-                  table.table.table-hover.table-striped
-                    thead
-                      th Professors - Search Results
-                    |                                     
-                    tbody#results
-                  |                                 
+              form
+                input#query.form-control(type='text', name='email', placeholder='Enter the name of professor here')
+              .content.table-responsive.table-full-width
+                table.table.table-hover.table-striped
+                  thead
+                    th Professors - Search Results
+                  tbody#results

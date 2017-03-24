@@ -6,76 +6,83 @@ block content
       max-height: calc(100vh - 210px);
       overflow-y: auto;
       }
-      .modal-backdrop {
+    .modal-backdrop {
       display: none;
       z-index: 0 !important;
       }
+    table td {
+      border-top: none !important;
+    }
   div(ng-controller='naaradDataController')
     .container-fluid
         .row
-            .col-md-12
-              .card
-                .header
-                  h4.title KGPian Newsfeed
-                  // <p class="category">Here is a subtitle for this table</p>
-                |                                 
-                .content.table-responsive.table-full-width
-                  table#feed.table.table-striped.table-bordered(cellspacing='0', width='100%')
-                    thead
-                      tr
-                        th KGPian Newsfeed
-                    |                                         
-                    tbody
-                      tr(ng-repeat='post in naaradData')
-                        td
-                          .card.text-xs-center.animated.bounceInUp(style='visibility: visible; animation-name: bounceInUp;')
-                            .card-header(style='background: #3E4450; color: white;')
-                              | {{post.source}}
-                            |    
-                            .col-lg-2(ng-show='!isUndefinedOrNull({{post.pic}})')
-                              img.card-img-top.img-fluid.b-lazy(src='images/ripple.gif', data-src='{{post.pic}}')
-                            |                                                             
-                            .card-block
-                              p.card-text
-                                | {{post.short_message}}
-                                a.card-link(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show="!isUndefinedOrNull({{post.read_more}})&&!isUndefinedOrNull({{post.pic}})")  [...]
-                                a.card-link(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="0", ng-show="!isUndefinedOrNull({{post.read_more}})")  [...]
-                              |                                                                 
-                              a.card-link(href='#', data-toggle='modal', data-target='#big', data-source=' Technology Students Gymkhana ', data-message=" Dear Kgpians, Yes!+ Course is happening at IIT Kharagpur with the International Faculties Amit Periwal and Ritika Periwal from 23rd March to 26th March at Gymkhana. <br>  <br> Register Asap at  <br> tiny.cc/yesplusiitkgp (limited seats available !!) <br>  <br> You can also check out the video at :  <br>  <a href='https://www.youtube.com/watch?v=z_HsXuzAshc' target='_blank'> https://www.youtube.com/w... </a>  ", data-img='https://scontent.xx.fbcdn.net/v/t31.0-8/17218477_1606951102653252_8910126097758565628_o.jpg?oh=59cf7d9547a6bd6f3deba2dab3e82400&oe=5958391B')
-                                i.fa.fa-book.fa-lg
-                                |  Read more
-                              |                                                                 
-                              a.card-link(href='https://www.facebook.com/149405445074499_1606951102653252', target='_blank')
-                                i.fa.fa-facebook-official.fa-lg
-                                |  View post
-                            |                                                             
-                            .card-footer(style='background: #3E4450; color: white;')
-                              h6.card-subtitle.small Posted on 16-03-2017 at 09:39PM
-                  |                                     
-                  .bd-example
-                    #big.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-                      .modal-dialog.modal-lg(role='document')
-                        .modal-content
-                          .modal-header
-                            button.close(type='button', data-dismiss='modal', aria-label='Close')
-                              span(aria-hidden='true') &times;
-                            |                                                         
-                            h4#exampleModalLabel.modal-title New message
-                          |                                                     
-                          .modal-body
+            .col-md-10.col-md-offset-1
+              .header
+                h4.title KGPian Newsfeed
+              .content.table-responsive.table-full-width
+                table#feed.table.table-hover(cellspacing='0', width='100%')
+                  thead
+                    tr
+                      th KGPian Newsfeed
+                  tbody
+                    tr(ng-repeat='post in naaradData')
+                      td
+                        .card.card-outline-primary.text-xs-center.animated.bounceInUp(style='visibility: visible; animation-name: bounceInUp;')
+                          #naarad-card.card-block
                             .row
-                              #pic.col-lg-4.col-sm-12(style='border:none; opacity: 1;')
-                                .card
-                                  img.card-img-top.img-fluid(src='', width='100%', alt='')
-                              |                                                             
-                              #content.col-lg-8.col-sm-12
-                                .card.text-xs-center(style='border:none;')
-                                  .card-block
-                                    p.card-text
-                                      | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-                          |                                                     
-                          .modal-footer
-                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                              .col-md-2(ng-show='!isUndefinedOrNull(post.pic)')
+                                img.card-img-top.img-responsive.b-lazy(src='images/ripple.gif', ng-data-src='{{post.pic}}')
+                              |
+                              .col-md-1(ng-show='isUndefinedOrNull(post.pic)')
+                              |
+                              .col-md-10                                                             
+                                h4.card-title
+                                  | {{post.source}}
+                                h6.card-subtitle.mb-2.text-muted Posted on {{post.real_date}} at {{post.real_time}}
+                                p.card-text
+                                  | {{post.short_message}}
+                                  a.card-link(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show='!isUndefinedOrNull(post.read_more)&&!isUndefinedOrNull(post.pic)')  ...
+                                  a.card-link(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="0", ng-show='!isUndefinedOrNull(post.read_more)&&isUndefinedOrNull(post.pic)')  ...
+                                |   
+                              .col-md-1(ng-show='isUndefinedOrNull(post.pic)')
+                              |
+                            .row
+                              .col-md-6.col-md-offset-3                                                              
+                                #naarad-card-button.a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show='!isUndefinedOrNull(post.read_more)&&!isUndefinedOrNull(post.pic)')
+                                  i.fa.fa-book.fa-lg
+                                  | Read more     
+                                #naarad-card-button.a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="0", ng-show='!isUndefinedOrNull(post.read_more)&&isUndefinedOrNull(post.pic)')
+                                  i.fa.fa-book.fa-lg
+                                  | Read more                                                           
+                                #naarad-card-button.a.btn.btn-secondary(href='https://www.facebook.com/{{post.id}}', target='_blank')
+                                  i.fa.fa-facebook-official.fa-lg
+                                  | View post
+                          |                                                             
+                |                                     
+                .bd-example
+                  #big.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+                    .modal-dialog.modal-lg(role='document')
+                      .modal-content
+                        .modal-header
+                          button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') &times;
+                          |                                                         
+                          h4#exampleModalLabel.modal-title New message
+                        |                                                     
+                        .modal-body
+                          .row
+                            #pic.col-lg-4.col-sm-12(style='border:none; opacity: 1;')
+                              .card
+                                img.card-img-top.img-fluid(src='', width='100%', alt='')
+                            |                                                             
+                            #content.col-lg-8.col-sm-12
+                              .card.text-xs-center(style='border:none;')
+                                .card-block
+                                  p.card-text
+                                    | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
+                        |                                                     
+                        .modal-footer
+                          button.btn.btn-secondary(type='button', data-dismiss='modal') Close
   //- script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
   //- script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js')
   script(src='js/lib/jquery.dataTables.min.js')

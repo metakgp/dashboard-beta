@@ -1,5 +1,13 @@
 #main-card {
-	background: url(../images/unsplash.jpg) bottom;
-	background-size: cover;
-	min-height: 90vh;
+    background: url(../images/unsplash.jpg) bottom;
+    background-size: cover;
+    min-height: 90vh;
+}
+
+#naarad-card {
+    padding: 20px;
+}
+
+#naarad-card-button {
+    margin: 20px;
 }

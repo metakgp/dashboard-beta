@@ -61,18 +61,14 @@ block content
       .container-fluid
           .row
             .col-md-12
-              .card
-                form
-                  input#query.form-control(type='text', name='email', placeholder='Enter your Question Paper here')
-                |                             
-                .content.table-responsive.table-full-width
-                  table.table.table-hover.table-striped
-                    thead
-                      th Question Paper - Search Results
-                    |                                     
-                    tbody#results
-                  |                                 
-                  .card.card-user
-                    .image(style='height: 100%; width: 100%; object-fit: contain')
-                      img(src='images/ratings.png', alt='...')
+              form
+                input#query.form-control(type='text', name='email', placeholder='Enter your Question Paper here')
+              .content.table-responsive.table-full-width
+                table.table.table-hover.table-striped
+                  thead
+                    th Question Paper - Search Results
+                  tbody#results
+          .row
+            .col-md-6.col-md-offset-3
+              img.img-responsive(src='images/ratings.png', alt='...')
 
