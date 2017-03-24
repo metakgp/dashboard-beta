@@ -1,6 +1,10 @@
 extends layout
 
 block content
+  style.
+    .hidden {
+      display: none;
+      }
   script(type='text/javascript').
     var fuse;
       var nextQuery = null;
@@ -27,6 +31,7 @@ block content
       }
       }
       function displayResults(results) {
+      $('#ratings').addClass('hidden');
       var html = ''
       for (var i = 0; i < 20; ++i) {
       html += '<tr><td><a href='+results[i].link+'>' + results[i].name +'</a> | <a>' + results[i].field +'</a> </td></tr>';
@@ -39,7 +44,8 @@ block content
       var search = _.debounce(function() {
       var query = $('#query').val().trim();
       if (query === '') {
-      $('#results-wrapper').html('');
+      $('#ratings').removeClass('hidden');
+      $('#results').html('');
       return;
       }
       if (processing) {
@@ -64,7 +70,7 @@ block content
               form
                 input#query.form-control(type='text', name='email', placeholder='Enter the name of professor here')
               .content.table-responsive.table-full-width
-                table.table.table-hover.table-striped
+                table#results.table.table-hover.table-striped
                   thead
                     th Professors - Search Results
-                  tbody#results
+                  tbody
