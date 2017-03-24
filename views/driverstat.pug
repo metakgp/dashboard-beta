@@ -2,25 +2,27 @@ extends layout
 
 block content
     script(type='text/javascript').
-        setInterval(
-            function(){
-            $.getJSON( "http://desolate-reef-33512.herokuapp.com/driverapi", function( data ) {
+      (function ping() {
+        $.getJSON("http://desolate-reef-33512.herokuapp.com/driverapi", function(data) {
             var items = [];
-            $.each( data, function( key, val ) {
-            if(val["status"] == "Free"){
-            items.push( "<tr><td>" + val["name"] + "</td><td>" + val["number"] + "</td><td>" + val["status"] + "&nbsp; <i class='fa fa-circle text-success'></i></td></tr>" );
-            }
+            console.log("Starting request");
+            console.log(new Date().toLocaleString());
+            $.each(data, function(key, val) {
+                if (val["status"] == "Free") {
+                    items.push("<tr><td>" + val["name"] + "</td><td>" + val["number"] + "</td><td>" + val["status"] + "&nbsp; <i class='fa fa-circle text-success'></i></td></tr>");
+                }
             });
-            $.each( data, function( key, val ) {
-            if(val["status"] != "Free"){
-            items.push( "<tr><td>" + val["name"] + "</td><td>" + val["number"] + "</td><td> Busy &nbsp;<i class='fa fa-circle text-danger'></i></td></tr>" );
-            }
+            $.each(data, function(key, val) {
+                if (val["status"] != "Free") {
+                    items.push("<tr><td>" + val["name"] + "</td><td>" + val["number"] + "</td><td> Busy &nbsp;<i class='fa fa-circle text-danger'></i></td></tr>");
+                }
             });
-            $('#feed-wrapper').html("<table id='feed' class='table table-striped table-bordered' cellspacing='0' width='100%'><thead><tr><th>Cab Driver</th><th>Contact Number</th><th>Status</th></tr></thead><tbody>"
-            +items.join("")+"</tbody></table>");
-            });
-            }
-            ,5000);
+            console.log("Ending request");
+            console.log(new Date().toLocaleString());
+            $('#feed-wrapper').html("<table id='feed' class='table table-striped table-bordered' cellspacing='0' width='100%'><thead><tr><th>Cab Driver</th><th>Contact Number</th><th>Status</th></tr></thead><tbody>" + items.join("") + "</tbody></table>");
+        });
+        setTimeout(ping, 1000);
+      })();
     .content
         .container-fluid
             .row
