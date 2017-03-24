@@ -47,7 +47,7 @@ block content
                               .col-md-1(ng-show='isUndefinedOrNull(post.pic)')
                               |
                             .row
-                              .col-md-6.col-md-offset-3                                                              
+                              .col-md-6.col-md-offset-3.text-center.pagination-centered                        
                                 #naarad-card-button.a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show='!isUndefinedOrNull(post.read_more)&&!isUndefinedOrNull(post.pic)')
                                   i.fa.fa-book.fa-lg
                                   | Read more     
@@ -86,7 +86,7 @@ block content
   //- script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
   //- script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js')
   script(src='js/lib/jquery.dataTables.min.js')
-  script(src='js/lib/dataTables.bootstrap4.min.js')
+  script(src='js/lib/datatables.js')
   script(type='text/javascript').
     $.extend( true, $.fn.dataTable.defaults, {
       "ordering": false,

@@ -1,3 +1,13 @@
 extends layout
 
 block content
+    #wikiCard.row(ng-controller='wikiSearchController')
+        .col-md-8.col-md-offset-1
+            form
+                .form-group
+                    label(for='wikisearch')
+                      | Search Wiki!
+                    input.form-control(type='text', placeholder='Search query...', ng-model='searchquery')
+        .col-md-2
+            button#wiki-button.btn.btn-warning(type='button', ng-click="triggerSearch()")
+              | Open on Wiki
