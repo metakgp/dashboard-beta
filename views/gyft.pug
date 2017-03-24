@@ -1,5 +1,10 @@
 extends layout
 
 block content
-	div(ng-controller='timetableController')
-		#timetablefromfile
+    div(ng-controller='timetableController')
+        .row
+            .col-md-10.col-md-offset-1
+                div(ng-bind-html='timetableFromHtml')
+        .row
+            .col-md-6.col-md-offset-3
+                button.btn.btn-block.btn-default(type='button', ng-click='downloadTT()') Download ICS file

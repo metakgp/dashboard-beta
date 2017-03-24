@@ -1,12 +1,15 @@
 angular.module('getTimeTable', [])
-    .controller('timetableController', ['$scope', '$location', '$templateRequest', '$sce', '$compile', 'TimeTables', function($scope, $location, $templateRequest, $sce, $compile, TimeTables) {
+    .controller('timetableController', ['$scope', '$location', '$sce', 'TimeTables', function($scope, $location, $sce, TimeTables) {
         var rollno = $location.search().user;
-        var htmlTT = TimeTables.getTTHtml(rollno);
-        console.log(htmlTT);
-        // var templateUrl = $sce.getTrustedResourceUrl('nameOfTemplate.html');
-        // $templateRequest(templateUrl).then(function(template) {
-        //     $compile($("#my-element").html(template).contents())($scope);
-        // }, function() {
-        //     // An error has occurred
-        // });
+        TimeTables.getTTHtml(rollno)
+            .then(function(data) {
+                var ttfh = "'" + data.data + "'";
+                $scope.timetableFromHtml = $sce.trustAsHtml(ttfh);
+            });
+
+        $scope.downloadTT = function() {
+            console.log("Initiating timetable download");
+            path = "/api/downloadICS/" + $scope.rollno.toLowerCase();
+            $window.location.href = path;
+        }
     }]);

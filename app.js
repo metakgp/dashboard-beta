@@ -318,6 +318,17 @@ app.get('/api/downloadICS/:user', function(req, res) {
 
 app.get('/api/getTimetableHtml/:user', function(req, res) {
     console.log("Get Timetable HTML for " + req.params.user);
+    var tt = path.resolve('tempstore/html/' + req.params.user + '.html');
+    var mimetype = mime.lookup(tt);
+
+    res.setHeader('Content-disposition', 'attachment; filename=' + req.params.user + path.extname(tt));
+    res.setHeader('Content-type', mimetype);
+
+    var filestream = fs.createReadStream(tt);
+    filestream.pipe(res);
+    res.on('finish', function() {
+        console.log("Fetch HTML complete");
+    });
 });
 
 /**
