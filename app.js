@@ -316,6 +316,10 @@ app.get('/api/downloadICS/:user', function(req, res) {
     });
 });
 
+app.get('/api/getTimetableHtml/:user', function(req, res) {
+    console.log("Get Timetable HTML for " + req.params.user);
+});
+
 /**
  * Error Handler.
  */

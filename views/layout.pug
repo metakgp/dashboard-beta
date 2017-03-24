@@ -7,6 +7,7 @@ html(ng-app='dashboard', lang='en')
       title #{title} - KGP Dashboard
       meta(content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0', name='viewport')
       meta(name='viewport', content='width=device-width')
+      base(href='/')
       meta(name='theme-color' content='#4DA5F4')
       meta(name='csrf-token', content=_csrf)
       link(href='css/style.css', rel='stylesheet')
@@ -38,7 +39,9 @@ html(ng-app='dashboard', lang='en')
       script(src='js/controller/get-security.js')
       script(src='js/controller/naarad-data.js')
       script(src='js/controller/wiki-search.js')
+      script(src='js/controller/gyft-fetch.js')
       script(src='js/services/auth-factory.js')
+      script(src='js/services/gyft-factory.js')
       script(src='js/core.js')
 
 body
