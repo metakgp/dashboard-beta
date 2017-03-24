@@ -1,4 +1,4 @@
-.sidebar(data-color='azure', data-image='images/sidebar-5.jpg')
+.sidebar(data-color='azure', data-image='images/sidebar-5.jpg', ng-controller='sidebarController')
   //
     Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
     Tip 2: you can also add an image using data-image tag
@@ -28,10 +28,16 @@
         a(href='/naarad')
           i.pe-7s-news-paper
           p Naarad
-      li
-        a(href='/gyft?user='+user.rollno)
-          i.pe-7s-date
-          p GYFT
+      - if (locals.user)
+        li
+          a(href='/gyft?user='+user.rollno)
+            i.pe-7s-date
+            p GYFT
+      - else
+        li
+          a(href='/gyft')
+            i.pe-7s-date
+            p GYFT
       li
         a(href='/cabshare')
           i.pe-7s-car
