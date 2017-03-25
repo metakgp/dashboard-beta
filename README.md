@@ -33,42 +33,38 @@ After they have been installed, `yarn install` will install all the other depend
 
 Multiple sub-modules have been integrated to make this Dashboard, a single go-to place for students. These sub-modules are much more well maintained, and have a bigger community developing it.
 
-- Wiki
+- Wiki ([Deployed](http://wiki.metakgp.org/))
 
 The Wiki is **NOT** just a deployed version of the open-sourced MediaWiki. It has it's own specialities of automization - with `PyWikiBots`. For example, all course pages that have been populated on the Wiki with grade dstributions - have been created by bot `blackjack`. Similarly, there are more Wiki bots that we use - such as, `batman` and `kakashi`.
 
-- MFQP
+- MFQP ([GitHub](https://github.com/metakgp/mfqp) | [Deployed](https://qp.metakgp.org/))
 
 This is the sub-module responsible for whipping up the previous year Question papers as fuzzy-search results. 
 
-- MCMP
+- MCMP ([GitHub](https://github.com/metakgp/mcmp) | [Deployed](http://metakgp.github.io/mcmp/))
 
 This is the sub-module responsible for whipping up professors and their projects as fuzzy-search results. 
 
-- Naarad
+- Naarad ([GitHub](https://github.com/metakgp/naarad-source) | [Deployed](https://athityakumar.github.io/naarad-source/))
 
 Naarad is the facebook newsfeed scraper, who is responsible for showing a dedicated campus newsfeed.
 
-- GYFT
+- GYFT ([GitHub](https://github.com/metakgp/gyft))
 
 GYFT used to be a simple Python script that would run locally to sync the user's timetable to Google Calendar, until it got integrated into Dashboard.
 
-- Driver status
+- Driver status ([GitHub](https://github.com/zorroblue/driver_status))
 
 A Django App, that provides the status of the drivers as an API to the Dashboard.
 
-- Driver Status App
+- Driver Status App ([GitHub](https://github.com/zorroblue/DriverStatusApp))
 
 An Android App, that would be used by the Cab drivers to update their status on the go.
 
-- Buy & Sell
+- Buy & Sell ([GitHub](https://github.com/zorroblue/buyandsell))
 
 A Django App that provides API end-points to the Dashboard's Buy & Sell actions.
 
-- Lost & Found
+- Lost & Found ([GitHub](https://github.com/zorroblue/lostandfound))
 
 A Django App that provides API end-points to the Dashboard's Lost & Found actions.
-
-- In-campus event calendar
-
-A Flask App that provides JSON responses at API end-points to the Dashboard.
