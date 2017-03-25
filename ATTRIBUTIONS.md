@@ -1,0 +1,41 @@
+## GYFT 
+- [Nishant Nikhil](https://github.com/nishnik)
+- [Athitya Kumar](https://github.com/athityakumar)
+- [Kshitij Saraogi](https://github.com/kshitij10496)
+- [Ayush Goyal](https://github.com/DefCon-007)
+- [Siddharth Kannan](https://github.com/icyflame)
+
+## Naarad 
+- [Ayush Goyal](https://github.com/DefCon-007)
+- [Athitya Kumar](https://github.com/athityakumar)
+- [Harsh Gupta](https://github.com/hargup)
+- [Vivek Rai](https://github.com/vivekiitkgp)
+- [Sayan Sinha](https://github.com/americast)
+- [Naresh](https://github.com/ghostwriternr)
+- [Pranit Bauva](https://github.com/pranitbauva1997)
+- [Zishan Sami](https://github.com/zishansami102)
+- [Harshit](https://github.com/iamharshit)
+- [Animesh Kashyap](https://github.com/annimesh2809)
+
+## MFQP 
+- [Siddharth Kannan](https://github.com/icyflame)
+- [Vikrant Varma](https://github.com/amrav)
+- [Athitya Kumar](https://github.com/athityakumar)
+- [Vivek Aithal](https://github.com/nuwandavek)
+- [Harsh Gupta](https://github.com/hargup)
+- [Vivek Rai](https://github.com/vivekiitkgp)
+- [Ayushya Anand](https://github.com/ayuhsya)
+- [Kalyan Kumar](https://github.com/kalyan-kumar)
+- [Stuti Modi](https://github.com/stutimodi96)
+- [Vivek Mudgal](https://github.com/vivekmudgal)
+- [Aman Chandra](https://github.com/amanchandra333)
+- [Pranit Bauva](https://github.com/pranitbauva1997)
+- [Abhinav Jain](https://github.com/abhinavjain241)
+- [Amegh Bhavsar](https://github.com/ameghbhavsar)
+
+## MCMP 
+- [Harsh Gupta](https://github.com/hargup)
+- [Kumar Krishna Agarwal](https://github.com/kumarkrishna)
+- [Athitya Kumar](https://github.com/athityakumar)
+- [Vivek Rai](https://github.com/vivekiitkgp)
+- [Abhishek Tripathi](https://github.com/TwistingTwists)
