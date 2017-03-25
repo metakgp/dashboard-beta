@@ -48,16 +48,21 @@ block content
                               .col-md-1(ng-show='isUndefinedOrNull(post.pic)')
                               |
                             .row
-                              .col-md-6.col-md-offset-3.text-center.pagination-centered                        
-                                #naarad-card-button.a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show='!isUndefinedOrNull(post.read_more)&&!isUndefinedOrNull(post.pic)')
-                                  i.fa.fa-book.fa-lg
-                                  | Read more     
-                                #naarad-card-button.a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="0", ng-show='!isUndefinedOrNull(post.read_more)&&isUndefinedOrNull(post.pic)')
-                                  i.fa.fa-book.fa-lg
-                                  | Read more                                                           
-                                #naarad-card-button.a.btn.btn-secondary(href='https://www.facebook.com/{{post.id}}', target='_blank')
-                                  i.fa.fa-facebook-official.fa-lg
-                                  | View post
+                              .col-md-6.col-md-offset-3.text-center.pagination-centered                                    
+                                #naarad-card-button
+                                  a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show='!isUndefinedOrNull(post.read_more)&&!isUndefinedOrNull(post.pic)')
+                                    i.fa.fa-book.fa-lg
+                                    | Read more
+                                  |
+                                  a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="0", ng-show='!isUndefinedOrNull(post.read_more)&&isUndefinedOrNull(post.pic)')
+                                    i.fa.fa-book.fa-lg
+                                    | Read more
+                                  |
+                                  a.btn.btn-secondary(href='https://www.facebook.com/{{post.id}}', target='_blank')
+                                    i.fa.fa-facebook-official.fa-lg
+                                    | View post
+                                  |
+                                |
                           |                                                             
                 |                                     
                 .bd-example
