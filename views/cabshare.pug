@@ -3,9 +3,9 @@ extends layout
 block content
     div(ng-controller='cabshareController')
         ul.nav.nav-tabs.nav-justified(style='margin-bottom: 30px;')
-            li.active
+            li(ng-class='{active : selectedTab()}')
                 a(href, ng-click='selectTab(1)') Search Cab
-            li
+            li(ng-class='{active : !selectedTab()}')
                 a(href, ng-click='selectTab(2)') Post a Cab
         form.form-horizontal(ng-show='selectedTab()')
             .form-group

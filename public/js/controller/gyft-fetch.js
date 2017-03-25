@@ -1,5 +1,5 @@
 angular.module('getTimeTable', [])
-    .controller('timetableController', ['$scope', '$location', '$sce', 'TimeTables', function($scope, $location, $sce, TimeTables) {
+    .controller('timetableController', ['$scope', '$window', '$location', '$sce', 'TimeTables', function($scope, $window, $location, $sce, TimeTables) {
         var rollno = $location.search().user;
         if (!angular.isUndefined(rollno)) {
             if (rollno.length > 0) {
@@ -12,7 +12,7 @@ angular.module('getTimeTable', [])
 
             $scope.downloadTT = function() {
                 console.log("Initiating timetable download");
-                path = "/api/downloadICS/" + $scope.rollno.toLowerCase();
+                path = "/api/downloadICS/" + rollno.toLowerCase();
                 $window.location.href = path;
             }
         }
