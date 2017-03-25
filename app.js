@@ -128,6 +128,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use('/datepicker', express.static(__dirname + '/node_modules/angularjs-datepicker/dist/'));
 
 /**
  * Primary app routes.

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "angular": "^1.6.3",
+    "angularjs-datepicker": "^2.1.15",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",

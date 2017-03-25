@@ -1,3 +1,34 @@
 extends layout
 
 block content
+    div(ng-controller='cabshareController')
+        ul.nav.nav-tabs.nav-justified
+            li.active
+                a(href='#') Search Cab
+            li
+                a(href='#') Post a Cab
+        form.form-horizontal
+            .form-group
+                label.col-sm-3.control-label(for='destination') Destination
+                .col-sm-7
+                    .dropdown
+                        button.btn.btn-default.btn-block.dropdown-toggle(data-toggle='dropdown', type='button', aria-expanded='false') {{button}}
+                            span.caret
+                        ul.dropdown-menu(ng-model='selectedDestination')
+                            li.dropdown-header Pick your destination
+                            li(ng-click="change(dest)" ng-repeat="dest in destinations")
+                                a {{dest}}
+            .form-group
+                label.col-sm-3.control-label(for='date') Date of Journey
+                .col-sm-7
+                    datepicker(date-format="yyyy-MM-dd")
+                        input.form-control(ng-model='date', type='text')
+            .form-group
+                label.col-sm-3.control-label(for='time') Time of Journey
+                .col-sm-7
+                    input.form-control(ng-model='time', type='text', name='time', id='time', placeholder='HH:MM')
+            .form-group
+                .col-sm-offset-3.col-sm-7
+                    button.col-sm-3.btn.btn-primary(type='button', ng-click='triggerSearch()')
+                        i.fa.fa-search
+                        | Search

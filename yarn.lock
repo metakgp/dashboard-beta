@@ -103,6 +103,10 @@ angular@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.3.tgz#5d34b799234e8fa17c6a3a14e0258733935f43e7"
 
+angularjs-datepicker@^2.1.15:
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/angularjs-datepicker/-/angularjs-datepicker-2.1.15.tgz#167dba163acd137ec9467e2a9e96feca722c7ffa"
+
 ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
