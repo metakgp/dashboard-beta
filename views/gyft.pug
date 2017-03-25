@@ -1,6 +1,12 @@
 extends layout
 
 block content
+
+    .row
+    .col-md-6.col-md-offset-3
+      #ratings
+        h1(style='text-align: center;') GYFT
+        p GYFT is a <b>timetable scraping utility</b> that has the ability to login to the user's account from the ERP credentials given by the user, scrape the user's timetable and also provides a downloadable ICS file. ICS files typically calendar information, and can easily be exported to any calendar.
     div(ng-controller='timetableController', style='margin-top: 30px;')
         -   if (locals.user)
             .row
