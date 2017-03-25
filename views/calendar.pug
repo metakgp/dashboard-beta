@@ -1,3 +1,9 @@
 extends layout
 
 block content
+    div(ng-controller='calendarController', ng-init='getAllEvents()')
+        .thumbnail(ng-repeat='event in successAllEvents')
+            img(style='width: 100%', ng-src='event.pic', alt='thumbnail')
+            .caption
+                h3 .caption h3
+                p Paragraph

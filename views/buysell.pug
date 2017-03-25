@@ -16,12 +16,12 @@ block content
     div(ng-controller='buysellController')
         ul.nav.nav-tabs.nav-justified(style='margin-bottom: 30px;')
             li(ng-class='{active : selectedTab(1)}')
-                a(href, ng-click='selectTab(1)') View bids
+                a(href, ng-click='selectTab(1);displayBids()') View bids
             li(ng-class='{active : selectedTab(2)}')
                 a(href, ng-click='selectTab(2)') Create offer
             li(ng-class='{active : selectedTab(3)}')
                 a(href, ng-click='selectTab(3);') View interests
-        .container-fluid
+        .container-fluid(ng-show='displayBidsResponse')
                 .row
                     .col-md-10.col-md-offset-1
                         .content.table-responsive.table-full-width
@@ -30,38 +30,39 @@ block content
                                     tr
                                         th Products for Sale
                                 tbody
-                                    tr(ng-repeat='post in naaradData')
+                                    tr(ng-repeat='(i, post) in displayBidsResponse track by $index')
                                         td
                                             .card.card-outline-primary.text-xs-center.animated.bounceInUp(style='visibility: visible; animation-name: bounceInUp;')
                                                 #naarad-card.card-block
                                                     .row
                                                         .col-md-2(ng-show='!isUndefinedOrNull(post.pic)')
                                                             img.card-img-top.img-responsive.b-lazy(src='images/ripple.gif', ng-src='{{post.pic}}')
-                                                        |
-                                                        .col-md-1(ng-show='isUndefinedOrNull(post.pic)')
-                                                        |
-                                                        .col-md-10                                                             
+                                                        .col-md-6(ng-show='!isUndefinedOrNull(post.pic)')
                                                             h4.card-title
-                                                                | Product 
-                                                                span.label.label-default Price
-                                                            h6.card-subtitle.mb-2.text-muted Posted on Date at Time by Seller
+                                                                | {{post.fields.title}} 
+                                                                span.label.label-default {{post.fields.price}}
+                                                            h6.card-subtitle.mb-2.text-muted Posted on {{post.fields.posted_date}} by {{post.fields.seller}}
                                                             p.card-text
-                                                                | Product description  
-                                                                a.card-link(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show='!isUndefinedOrNull(post.read_more)&&!isUndefinedOrNull(post.pic)')  ...
-                                                                a.card-link(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="0", ng-show='!isUndefinedOrNull(post.read_more)&&isUndefinedOrNull(post.pic)')  ...
-                                                            |   
-                                                        .col-md-1(ng-show='isUndefinedOrNull(post.pic)')
-                                                        |
-                                                    .row
-                                                        .col-md-6.col-md-offset-3.text-center.pagination-centered                        
-                                                            #naarad-card-button.a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="{{post.pic}}", ng-show='!isUndefinedOrNull(post.read_more)&&!isUndefinedOrNull(post.pic)')
-                                                                i.fa.fa-shopping-cart.fa-lg
-                                                                | I'm interested     
-                                                            #naarad-card-button.a.btn.btn-secondary(href='#', data-toggle='modal', data-target='#big', data-source="{{post.source}}", data-message=" {{post.message}} ", data-img="0", ng-show='!isUndefinedOrNull(post.read_more)&&isUndefinedOrNull(post.pic)')
-                                                                i.fa.fa-shopping-cart.fa-lg
-                                                                | I'm interested                                                           
-                                                |                                                             
-                            |
+                                                                | {{post.fields.description}}
+                                                        .col-md-4(ng-show='!isUndefinedOrNull(post.pic)')
+                                                            form
+                                                                .form-group
+                                                                    input.form-control(name='bidsList_{{$index}}', placeholder='Your quoted price', type='text')
+                                                            button.btn.btn-primary(type="button", ng-click="sendInterest(i, post.pk)")
+                                                                | I'm interested
+                                                        .col-md-8(ng-show='isUndefinedOrNull(post.pic)')
+                                                            h4.card-title
+                                                                | {{post.fields.title}} 
+                                                                span.label.label-default {{post.fields.price}}
+                                                            h6.card-subtitle.mb-2.text-muted Posted on {{post.fields.posted_date}} by {{post.fields.seller}}
+                                                            p.card-text
+                                                                | {{post.fields.description}}
+                                                        .col-md-4(ng-show='isUndefinedOrNull(post.pic)')
+                                                            form
+                                                                .form-group
+                                                                    input.form-control(name='bidsList_{{$index}}', placeholder='Your quoted price', type='text')
+                                                            button.btn.btn-primary(type="button", ng-click="sendInterest(i, post.pk)")
+                                                                | I'm interested
                             table#notifications_feed.hidden.table.table-striped.table-hover(cellspacing='0', width='100%')
                                 thead
                                     tr

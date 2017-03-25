@@ -50,10 +50,16 @@
         a(href='/driverstat')
           i.pe-7s-call
           p Driver Status
-      li
-        a(href='/buysell')
-          i.pe-7s-cart
-          p Buy / Sell portal
+      - if (locals.user)
+        li
+          a(href='/buysell?user='+user.rollno)
+            i.pe-7s-cart
+            p Buy / Sell portal
+      - else
+        li
+          a(href='/buysell')
+            i.pe-7s-cart
+            p Buy / Sell portal
       li
         a(href='/lostfound')
           i.pe-7s-way
