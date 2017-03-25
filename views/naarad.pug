@@ -32,7 +32,7 @@ block content
                           #naarad-card.card-block
                             .row
                               .col-md-2(ng-show='!isUndefinedOrNull(post.pic)')
-                                img.card-img-top.img-responsive.b-lazy(src='images/ripple.gif', ng-data-src='{{post.pic}}')
+                                img.card-img-top.img-responsive.b-lazy(src='images/ripple.gif', ng-src='{{post.pic}}')
                               |
                               .col-md-1(ng-show='isUndefinedOrNull(post.pic)')
                               |
