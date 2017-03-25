@@ -1,9 +1,16 @@
 extends layout
 
 block content
-    div(ng-controller='calendarController', ng-init='getAllEvents()')
-        .thumbnail(ng-repeat='event in successAllEvents')
-            img(style='width: 100%', ng-src='event.pic', alt='thumbnail')
-            .caption
-                h3 .caption h3
-                p Paragraph
+    .row(ng-controller='calendarController', ng-init='getAllEvents()', style='margin-top: 30px;')
+        .col-xs-10.col-xs-offset-1
+            .jumbotron(ng-repeat='(i, campusEvent) in successAllEvents track by $index', style='padding: 10px;')
+                .row
+                    .col-xs-4
+                        img.img.img-responsive(ng-src="{{campusEvent.pic}}")
+                    .col-xs-8
+                        a(target="_blank", ng-href="{{campusEvent.link}}", style='color: #111111; font-size: 40px;') {{campusEvent.name}}
+                        p {{campusEvent.description}}
+                        p Hosted by {{campusEvent.pageName}}
+                        p Venue: {{campusEvent.placeName}}
+                        p Date and Time: On {{campusEvent.startDate}} at {{campusEvent.startTime}}
+                        img(ng-src="{{imgUrl}}")

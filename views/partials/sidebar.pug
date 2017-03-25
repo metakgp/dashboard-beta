@@ -13,9 +13,17 @@
           i.pe-7s-home
           p Home
       li
-        a(href='/wiki')
+        a(target="_blank", href="https://wiki.metakgp.org/w/Main_Page")
           i.pe-7s-user
           p Wiki
+      li
+        a(target="_blank", href="https://wiki.metakgp.org/w/Yellow_pages")
+          i.pe-7s-id
+          p Yellow Pages
+      li
+        a(target="_blank", href="https://wiki.metakgp.org/w/Category:Courses")
+          i.pe-7s-study
+          p Courses
       li
         a(href='/mfqp')
           i.pe-7s-note2
@@ -31,7 +39,7 @@
       - if (locals.user)
         li
           a(href='/gyft?user='+user.rollno)
-            i.pe-7s-date
+            i.pe-7s-alarm
             p GYFT
       - else
         li
