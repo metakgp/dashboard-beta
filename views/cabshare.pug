@@ -1,6 +1,12 @@
 extends layout
 
 block content
+    .row
+      .col-md-6.col-md-offset-3
+        #ratings
+          h1(style='text-align: center;') Cab Sharing
+          p As the name suggests, this is a <b>cab sharing utility</b> that allows campus people to share their cab rides.
+    <br>
     div(ng-controller='cabshareController')
         ul.nav.nav-tabs.nav-justified(style='margin-bottom: 30px;')
             li(ng-class='{active : selectedTab(1)}')

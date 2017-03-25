@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .page-header
-    h3 Sign up
+    h3(style='text-align: center;') Sign up
   div(ng-controller='loginController')
     form.form-horizontal(id='signup-form', method='POST', action="/signup")
       input(type='hidden', name='_csrf', value=_csrf)
@@ -18,9 +18,9 @@ block content
         label.col-sm-3.control-label(for='password') Password
         .col-sm-7
           input.form-control(ng-model='pass', type='password', name='password', id='password', placeholder='Password', required)
-      label(ng-show='securityQuestion.length', style='font-size: 20px;') Security question: {{securityQuestion}}
+      p(ng-show='securityQuestion.length', style='font-size: 20px; text-align: center;') Security question: {{securityQuestion}}
       .form-group
-        label.col-sm-3.control-label(for='security') Secuirty Question
+        label.col-sm-3.control-label(for='security') Security Question
         .col-sm-7
           input.form-control(ng-model='securityAnswer', type='password', name='security', id='security', placeholder='Security Question', required)
       .form-group

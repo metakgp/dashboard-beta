@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .page-header
-    h3 Sign in
+    h3(style='text-align: center;') Sign in
   form.form-horizontal(method='POST', action="/login")
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group
