@@ -29,18 +29,25 @@ block content
                     input.form-control(ng-model='time', type='text', name='time', id='time', placeholder='HH:MM')
             .form-group
                 .col-sm-offset-3.col-sm-7
-                    button.col-sm-3.btn.btn-primary(type='button', ng-click='triggerSearch()')
+                    button.col-sm-3.btn.btn-block.btn-primary(type='button', ng-click='triggerSearch()')
                         i.fa.fa-search
                         | Search
         form.form-horizontal(ng-show='!selectedTab()')
             .form-group
                 .col-sm-offset-1.col-sm-10
                     label.col-sm-2.control-label(for='name') Name
-                    .col-sm-4
-                        input.form-control(ng-model='name', type='text', name='name', id='name', value=user.profile.name)
-                    label.col-sm-2.control-label(for='email') Email
-                    .col-sm-4
-                        input.form-control(ng-model='email', type='email', name='email', id='email', value=user.email)
+                    -   if (locals.user)
+                        .col-sm-4
+                            input.form-control(ng-model='name', type='text', name='name', id='name', value=user.profile.name)
+                        label.col-sm-2.control-label(for='email') Email
+                        .col-sm-4
+                            input.form-control(ng-model='email', type='email', name='email', id='email', value=user.email)
+                    -   else
+                        .col-sm-4
+                            input.form-control(ng-model='name', type='text', name='name', id='name')
+                        label.col-sm-2.control-label(for='email') Email
+                        .col-sm-4
+                            input.form-control(ng-model='email', type='email', name='email', id='email')
             .form-group
                 .col-sm-offset-1.col-sm-10
                     label.col-sm-2.control-label(for='contact') Contact Number
@@ -75,6 +82,6 @@ block content
                         input.form-control(ng-model='threshold', type='text', name='number', id='threshold', step='0.1')
             .form-group
                 .col-sm-offset-3.col-sm-7
-                    button.col-sm-3.btn.btn-primary(type='button', ng-click='triggerPost()')
+                    button.col-sm-3.btn.btn-block.btn-primary(type='button', ng-click='triggerPost()')
                         i.fa.fa-pencil
                         | Post

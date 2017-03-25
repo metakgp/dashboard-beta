@@ -92,7 +92,7 @@ exports.postSignup = (req, res, next) => {
   const user = new User({
     email: req.body.email,
     password: req.body.password,
-    rollno: req.body.rollno
+    rollno: req.body.rollno.toLowerCase()
   });
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {
