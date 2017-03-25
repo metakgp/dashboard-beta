@@ -12,11 +12,11 @@ block content
                 label.col-sm-3.control-label(for='destination') Destination
                 .col-sm-7
                     .dropdown
-                        button.btn.btn-default.btn-block.dropdown-toggle(data-toggle='dropdown', type='button', aria-expanded='false') {{button}}
+                        button.btn.btn-default.btn-block.dropdown-toggle(data-toggle='dropdown', type='button', aria-expanded='false') {{searchButton}}
                             span.caret
-                        ul.dropdown-menu(ng-model='selectedDestination')
+                        ul.dropdown-menu(ng-model='searchSelectedDestination')
                             li.dropdown-header Pick your destination
-                            li(ng-click="change(dest)" ng-repeat="dest in destinations")
+                            li(ng-click="searchChange(dest)" ng-repeat="dest in destinations")
                                 a {{dest}}
             .form-group
                 label.col-sm-3.control-label(for='date') Date of Journey
@@ -32,3 +32,49 @@ block content
                     button.col-sm-3.btn.btn-primary(type='button', ng-click='triggerSearch()')
                         i.fa.fa-search
                         | Search
+        form.form-horizontal
+            .form-group
+                .col-sm-offset-1.col-sm-10
+                    label.col-sm-2.control-label(for='name') Name
+                    .col-sm-4
+                        input.form-control(ng-model='name', type='text', name='name', id='name', value=user.profile.name)
+                    label.col-sm-2.control-label(for='email') Email
+                    .col-sm-4
+                        input.form-control(ng-model='email', type='email', name='email', id='email', value=user.email)
+            .form-group
+                .col-sm-offset-1.col-sm-10
+                    label.col-sm-2.control-label(for='contact') Contact Number
+                    .col-sm-4
+                        input.form-control(ng-model='contact', type='text', name='contact', id='contact')
+                    label.col-sm-2.control-label(for='seats') Available seats
+                    .col-sm-4
+                        input.form-control(ng-model='seats', type='text', name='number', id='seats')
+            .form-group
+                label.col-sm-3.control-label(for='destination') Destination
+                .col-sm-7
+                    .dropdown
+                        button.btn.btn-default.btn-block.dropdown-toggle(data-toggle='dropdown', type='button', aria-expanded='false') {{postButton}}
+                            span.caret
+                        ul.dropdown-menu(ng-model='postSelectedDestination')
+                            li.dropdown-header Pick your destination
+                            li(ng-click="postChange(dest)" ng-repeat="dest in destinations")
+                                a {{dest}}
+            .form-group
+                .col-sm-offset-1.col-sm-10
+                    label.col-sm-2.control-label(for='date') Date of Journey
+                    .col-sm-10
+                        datepicker(date-format="yyyy-MM-dd")
+                            input.form-control(ng-model='date', type='text')
+            .form-group
+                .col-sm-offset-1.col-sm-10
+                    label.col-sm-2.control-label(for='time') Time of journey
+                    .col-sm-4
+                        input.form-control(ng-model='time', type='text', name='time', id='time', placeholder='HH:MM')
+                    label.col-sm-2.control-label(for='threshold') Time window (hours)
+                    .col-sm-4
+                        input.form-control(ng-model='threshold', type='text', name='number', id='threshold', step='0.1')
+            .form-group
+                .col-sm-offset-3.col-sm-7
+                    button.col-sm-3.btn.btn-primary(type='button', ng-click='triggerPost()')
+                        i.fa.fa-pencil
+                        | Post
