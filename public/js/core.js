@@ -1,4 +1,4 @@
-angular.module('dashboard', ['ngRoute', 'getSecurity', 'getSecurityService', 'fetchNaarad', 'searchWiki', 'getTimeTable', 'getGyftService', 'sidebarCheck'])
+angular.module('dashboard', ['ngRoute', 'getSecurity', 'getSecurityService', 'fetchNaarad', 'searchWiki', 'getTimeTable', 'getGyftService', 'sidebarCheck', 'dtDirective'])
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $locationProvider.html5Mode({
             enabled: true,

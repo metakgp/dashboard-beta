@@ -3,6 +3,7 @@ angular.module('fetchNaarad', [])
         $http.get('data/feed.json')
             .then(function(res) {
                 $scope.naaradData = res.data;
+                $scope.$broadcast('naaraddataloaded');
             });
 
         $scope.isUndefinedOrNull = function(val) {

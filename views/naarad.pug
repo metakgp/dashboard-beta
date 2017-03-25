@@ -14,6 +14,7 @@ block content
       border-top: none !important;
     }
   div(ng-controller='naaradDataController')
+    <datatables-directive/>
     .container-fluid
         .row
             .col-md-10.col-md-offset-1
@@ -83,20 +84,9 @@ block content
                         |                                                     
                         .modal-footer
                           button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-  //- script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
-  //- script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js')
-  //- script(src='js/lib/jquery.dataTables.min.js')
-  //- script(src='js/lib/datatables.min.js')
-  script(src='js/lib/jquery.dataTables.min.js')
-  script(src='js/lib/dataTables.bootstrap.min.js')
+  script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
+  script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js')
   script(type='text/javascript').
-    $.extend( true, $.fn.dataTable.defaults, {
-      "ordering": false,
-      "bInfo" : false
-      } );
-      $(document).ready(function(){
-      $('#feed').DataTable();
-      });
       $('#big').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // Button that triggered the modal
       var source = button.data('source') // Extract info from data-* attributes
