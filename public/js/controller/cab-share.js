@@ -1,8 +1,6 @@
 angular.module('cabShare', [])
     .controller('cabshareController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
-        // const requesturl = 'http://139.59.79.173/';
-        const requesturl = 'http://192.168.43.7:5000/';
-        // const requesturl = 'http://127.0.0.1:5000/';
+        const requesturl = 'http://139.59.79.173/';
         $scope.searchSelectedDestination = null;
         $scope.postSelectedDestination = null;
         $scope.searchButton = "Destination";
@@ -13,21 +11,22 @@ angular.module('cabShare', [])
             console.log($scope.date);
             console.log($scope.time);
             $http({
-                    url: requesturl + '/search-cab',
-                    method: "POST",
-                    data: {
-                        'dest': $scope.searchSelectedDestination,
-                        'date': $scope.date,
-                        'time': $scope.time
-                    },
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                })
-                .then(function(response) {
-                        console.log(response);
-                    },
-                    function(response) { // optional
-                        console.log(response);
-                    });
+                method: 'POST',
+                url: requesturl + 'search-cab',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: { dest: $scope.searchSelectedDestination, date: $scope.date, time: $scope.time }
+            }).then(function(response) {
+                    console.log(response);
+                },
+                function(response) {
+                    console.log(response);
+                });
 
         }
         $scope.searchChange = function(name) {
@@ -42,5 +41,12 @@ angular.module('cabShare', [])
         $scope.postChange = function(name) {
             $scope.postButton = name;
             $scope.postSelectedDestination = name;
+        }
+        $scope.activeTab = 1;
+        $scope.selectTab = function(option) {
+            $scope.activeTab = option;
+        }
+        $scope.selectedTab = function() {
+            return $scope.activeTab === 1;
         }
     }]);

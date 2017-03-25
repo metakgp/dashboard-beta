@@ -2,12 +2,12 @@ extends layout
 
 block content
     div(ng-controller='cabshareController')
-        ul.nav.nav-tabs.nav-justified
+        ul.nav.nav-tabs.nav-justified(style='margin-bottom: 30px;')
             li.active
-                a(href='#') Search Cab
+                a(href, ng-click='selectTab(1)') Search Cab
             li
-                a(href='#') Post a Cab
-        form.form-horizontal
+                a(href, ng-click='selectTab(2)') Post a Cab
+        form.form-horizontal(ng-show='selectedTab()')
             .form-group
                 label.col-sm-3.control-label(for='destination') Destination
                 .col-sm-7
@@ -32,7 +32,7 @@ block content
                     button.col-sm-3.btn.btn-primary(type='button', ng-click='triggerSearch()')
                         i.fa.fa-search
                         | Search
-        form.form-horizontal
+        form.form-horizontal(ng-show='!selectedTab()')
             .form-group
                 .col-sm-offset-1.col-sm-10
                     label.col-sm-2.control-label(for='name') Name
