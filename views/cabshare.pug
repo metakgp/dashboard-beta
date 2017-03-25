@@ -3,25 +3,27 @@ extends layout
 block content
     div(ng-controller='cabshareController')
         ul.nav.nav-tabs.nav-justified(style='margin-bottom: 30px;')
-            li(ng-class='{active : selectedTab()}')
+            li(ng-class='{active : selectedTab(1)}')
                 a(href, ng-click='selectTab(1)') Search Cab
-            li(ng-class='{active : !selectedTab()}')
+            li(ng-class='{active : selectedTab(2)}')
                 a(href, ng-click='selectTab(2)') Post a Cab
-        form.form-horizontal(ng-show='selectedTab()')
+            li(ng-class='{active : selectedTab(3)}')
+                a(href, ng-click='selectTab(3);getAllCabs()') List all cabs
+        form.form-horizontal(ng-show='selectedTab(1)')
             .form-group
                 label.col-sm-3.control-label(for='destination') Destination
                 .col-sm-7
                     .dropdown
                         button.btn.btn-default.btn-block.dropdown-toggle(data-toggle='dropdown', type='button', aria-expanded='false') {{searchButton}}
                             span.caret
-                        ul.dropdown-menu(ng-model='searchSelectedDestination')
+                        ul.dropdown-menu(ng-model='searchSelectedDestination', style='width: 100%;')
                             li.dropdown-header Pick your destination
                             li(ng-click="searchChange(dest)" ng-repeat="dest in destinations")
                                 a {{dest}}
             .form-group
                 label.col-sm-3.control-label(for='date') Date of Journey
                 .col-sm-7
-                    datepicker(date-format="yyyy-MM-dd")
+                    datepicker(date-format="yyyy-MM-dd", date-min-limit="minDateStr", date-typer="true")
                         input.form-control(ng-model='date', type='text')
             .form-group
                 label.col-sm-3.control-label(for='time') Time of Journey
@@ -32,7 +34,7 @@ block content
                     button.col-sm-3.btn.btn-block.btn-primary(type='button', ng-click='triggerSearch()')
                         i.fa.fa-search
                         | Search
-        form.form-horizontal(ng-show='!selectedTab()')
+        form.form-horizontal(ng-show='selectedTab(2)')
             .form-group
                 .col-sm-offset-1.col-sm-10
                     label.col-sm-2.control-label(for='name') Name
@@ -62,7 +64,7 @@ block content
                     .dropdown
                         button.btn.btn-default.btn-block.dropdown-toggle(data-toggle='dropdown', type='button', aria-expanded='false') {{postButton}}
                             span.caret
-                        ul.dropdown-menu(ng-model='postSelectedDestination')
+                        ul.dropdown-menu(ng-model='postSelectedDestination', style='width: 100%;')
                             li.dropdown-header Pick your destination
                             li(ng-click="postChange(dest)" ng-repeat="dest in destinations")
                                 a {{dest}}
@@ -85,3 +87,43 @@ block content
                     button.col-sm-3.btn.btn-block.btn-primary(type='button', ng-click='triggerPost()')
                         i.fa.fa-pencil
                         | Post
+        div.row.text-center.pagination-centered(ng-show="successPost == true&&selectedTab(1)")
+            .col-xs-12
+                p Post successful! Find possible matches by checking the listings.
+        div.row.text-center.pagination-centered(ng-show="successPost == false&&selectedTab(1)")
+            .col-xs-12
+                p Post unsuccessful. Please try again.
+        div.row(ng-show="successAll&&selectedTab(3)")
+            .col-xs-10.col-xs-offset-1
+                table.table.table-bordered
+                    thead
+                        tr
+                            th Name
+                            th Destination
+                            th Available seats
+                            th Date
+                            th Time
+                            th Contact
+                    tbody
+                        tr(ng-repeat="ride in successAll")
+                            td {{ride.name}}
+                            td {{ride.dest}}
+                            td {{ride.availSeats}}
+                            td {{ride.date}}
+                            td {{ride.time}}
+                            td {{ride.number}}
+        div.row(ng-show="successSearch&&selectedTab(1)")
+            .col-xs-10.col-xs-offset-1
+                table.table.table-bordered
+                    thead
+                        tr
+                            th Name
+                            th Destination
+                            th Available seats
+                            th Contact
+                    tbody
+                        tr(ng-repeat="ride in successSearch")
+                            td {{ride.name}}
+                            td {{ride.dest}}
+                            td {{ride.availSeats}}
+                            td {{ride.number}}

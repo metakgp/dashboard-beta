@@ -13,9 +13,18 @@
 }
 
 #wikiCard {
-	padding-top: 50px;
+    padding-top: 50px;
 }
 
 #wiki-button {
-	margin-top: 25px;
+    margin-top: 25px;
+}
+
+._720kb-datepicker-calendar-day._720kb-datepicker-today {
+    background: #aaaaaa;
+    color: white;
+}
+
+._720kb-datepicker-calendar-day._720kb-datepicker-today:hover {
+    color: #111111;
 }
