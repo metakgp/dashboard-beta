@@ -44,9 +44,11 @@ const mfqpController = require('./controllers/mfqp');
 const mcmpController = require('./controllers/mcmp');
 const naaradController = require('./controllers/naarad');
 const gyftController = require('./controllers/gyft');
+const calendarController = require('./controllers/calendar');
 const cabshareController = require('./controllers/cabshare');
 const driverstatController = require('./controllers/driverstat');
 const buysellController = require('./controllers/buysell');
+const lostfoundController = require('./controllers/lostfound');
 
 /**
  * API keys and Passport configuration.
@@ -156,9 +158,11 @@ app.get('/mfqp', mfqpController.getMfqp);
 app.get('/mcmp', mcmpController.getMcmp);
 app.get('/naarad', naaradController.getNaarad);
 app.get('/gyft', gyftController.getGyft);
+app.get('/calendar', calendarController.getCalendar);
 app.get('/cabshare', cabshareController.getCabShare);
 app.get('/driverstat', driverstatController.getDriverStat);
 app.get('/buysell', buysellController.getBuySell);
+app.get('/lostfound', lostfoundController.getLostFound);
 
 /**
  * API examples routes.
