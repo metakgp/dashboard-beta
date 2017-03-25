@@ -1,4 +1,4 @@
-.sidebar(data-color='azure', data-image='images/sidebar-5.jpg', ng-controller='sidebarController')
+.sidebar(data-color='orange', data-image='images/sidebar-5.jpg', ng-controller='sidebarController')
   //
     Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
     Tip 2: you can also add an image using data-image tag
@@ -8,7 +8,7 @@
         a(href='/')
           img.img-responsive.center-block(src='images/logo/metakgp-inv.png')
     ul.nav
-      li.active
+      li
         a(href='/')
           i.pe-7s-home
           p Home
@@ -36,17 +36,25 @@
       - else
         li
           a(href='/gyft')
-            i.pe-7s-date
+            i.pe-7s-study
             p GYFT
+      li
+        a(href='#')
+          i.pe-7s-date
+          p In-campus calendar
       li
         a(href='/cabshare')
           i.pe-7s-car
           p Cab Sharing
       li
         a(href='/driverstat')
-          i.pe-7s-car
+          i.pe-7s-call
           p Driver Status
       li
         a(href='/buysell')
           i.pe-7s-cart
           p Buy / Sell portal
+      li
+        a(href='#')
+          i.pe-7s-way
+          p Lost / Found portal
