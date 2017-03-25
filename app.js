@@ -49,6 +49,7 @@ const cabshareController = require('./controllers/cabshare');
 const driverstatController = require('./controllers/driverstat');
 const buysellController = require('./controllers/buysell');
 const lostfoundController = require('./controllers/lostfound');
+const coursesController = require('./controllers/courses');
 
 /**
  * API keys and Passport configuration.
@@ -164,6 +165,7 @@ app.get('/cabshare', cabshareController.getCabShare);
 app.get('/driverstat', driverstatController.getDriverStat);
 app.get('/buysell', buysellController.getBuySell);
 app.get('/lostfound', lostfoundController.getLostFound);
+app.get('/courses', coursesController.getCourses);
 
 /**
  * API examples routes.
