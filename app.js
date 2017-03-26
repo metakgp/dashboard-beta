@@ -51,6 +51,8 @@ const buysellController = require('./controllers/buysell');
 const lostfoundController = require('./controllers/lostfound');
 const coursesController = require('./controllers/courses');
 
+const apisController = require('./controllers/apis');
+
 /**
  * API keys and Passport configuration.
  */
@@ -166,6 +168,8 @@ app.get('/driverstat', driverstatController.getDriverStat);
 app.get('/buysell', buysellController.getBuySell);
 app.get('/lostfound', lostfoundController.getLostFound);
 app.get('/courses', coursesController.getCourses);
+
+app.get('/apis', apisController.getApis);
 
 /**
  * API examples routes.
