@@ -1,0 +1,30 @@
+[submodule "mfqp"]
+	path = mfqp
+	url = https://github.com/metakgp/mfqp.git
+[submodule "mcmp"]
+	path = mcmp
+	url = https://github.com/metakgp/mcmp.git
+[submodule "naarad"]
+	path = naarad
+	url = https://github.com/metakgp/naarad-source
+[submodule "gyft"]
+	path = gyft
+	url = https://github.com/metakgp/gyft
+[submodule "driver_status"]
+	path = driver_status
+	url = https://github.com/zorroblue/driver_status
+[submodule "DriverStatusApp"]
+	path = DriverStatusApp
+	url = https://github.com/zorroblue/DriverStatusApp
+[submodule "buyandsell"]
+	path = buyandsell
+	url = https://github.com/zorroblue/buyandsell
+[submodule "lostandfound"]
+	path = lostandfound
+	url = https://github.com/zorroblue/lostandfound
+[submodule "Cab-Sharing"]
+	path = Cab-Sharing
+	url = https://github.com/DefCon-007/Cab-Sharing
+[submodule "incampus_events"]
+	path = incampus_events
+	url = https://github.com/DefCon-007/events
