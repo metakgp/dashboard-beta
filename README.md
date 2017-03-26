@@ -68,3 +68,11 @@ A Django App that provides API end-points to the Dashboard's Buy & Sell actions.
 - Lost & Found ([GitHub](https://github.com/zorroblue/lostandfound))
 
 A Django App that provides API end-points to the Dashboard's Lost & Found actions.
+
+- In-campus Event Calendar ([GitHub](https://github.com/DefCon-007/events))
+
+A Flask App that provides API responses to the Dashboard's In-campus event calendar.
+
+- Cab Sharing ([GitHub](https://github.com/DefCon-007/Cab-Sharing))
+
+A Flask App that provides API endpoints & responses for the Dashboard's Cab-sharing portal.
