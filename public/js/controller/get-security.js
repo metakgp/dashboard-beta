@@ -12,11 +12,13 @@ angular.module('getSecurity', [])
         $scope.ttsuccess = "";
 
         $scope.makeTT = function() {
+            $scope.timetableLoading = true;
             console.log("Initiating timetable create");
             SecretQuestion.makeTimeTable($scope.rollno.toLowerCase(), $scope.pass, $scope.securityAnswer, $rootScope.sessionToken)
                 .then(function(data) {
                     console.log(data);
-                    $scope.ttsuccess = "TimeTable successfully created"
+                    $scope.ttsuccess = "TimeTable successfully created";
+                    $scope.timetableLoading = false;
                 });
         }
 

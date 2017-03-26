@@ -25,9 +25,14 @@ block content
           input.form-control(ng-model='securityAnswer', type='password', name='security', id='security', placeholder='Security Question', required)
       .form-group
         .col-sm-offset-3.col-sm-7
-          button.btn.btn-success(ng-hide='ttsuccess.length' type='button', ng-click='makeTT()')
+          button.btn.btn-success(ng-hide='timetableLoading||ttsuccess.length' type='button', ng-click='makeTT()')
             i.fa.fa-user-plus
             | Verify with ERP
+          .row(ng-show='timetableLoading')
+            .col-xs-1
+              img(src='images/ripple.gif', style='max-height: 40px;')
+            .col-xs-11
+              p Please wait...
       .form-group
         .col-sm-offset-3.col-sm-7
           button.btn.btn-success(ng-disabled='!ttsuccess.length', type='submit')

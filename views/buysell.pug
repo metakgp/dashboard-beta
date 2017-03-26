@@ -20,8 +20,8 @@ block content
             li(ng-class='{active : selectedTab(2)}')
                 a(href, ng-click='selectTab(2)') Create offer
             li(ng-class='{active : selectedTab(3)}')
-                a(href, ng-click='selectTab(3);') View interests
-        .container-fluid(ng-show='displayBidsResponse')
+                a(href, ng-click='selectTab(3);getAllOffers()') View offers
+        .container-fluid(ng-show='selectedTab(1)&&displayBidsResponse')
                 .row
                     .col-md-10.col-md-offset-1
                         .content.table-responsive.table-full-width
@@ -95,6 +95,30 @@ block content
                                             |                                                     
                                             .modal-footer
                                                 button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+        form.form-horizontal(ng-show='selectedTab(2)')
+            .form-group
+                .col-sm-offset-1.col-sm-10
+                    label.col-sm-2.control-label(for='title') Title
+                    .col-sm-4
+                        input.form-control(ng-model='title', type='text', name='title', id='title')
+                    label.col-sm-2.control-label(for='price') Price
+                    .col-sm-4
+                        input.form-control(ng-model='price', type='number', name='price', id='price')
+            .form-group
+                .col-sm-offset-1.col-sm-10
+                    label.col-sm-2.control-label(for='description') Description
+                    .col-sm-10
+                        input.form-control(ng-model='description', type='text', name='description', id='description')
+            .form-group
+                .col-sm-offset-1.col-sm-10
+                    label.col-sm-2.control-label(for='imgurl') Image URL
+                    .col-sm-10
+                        input.form-control(ng-model='imgurl', type='text', name='imgurl', id='imgurl')
+            .form-group
+                .col-sm-offset-3.col-sm-7
+                    button.col-sm-3.btn.btn-block.btn-primary(type='button', ng-click='createOffer()')
+                        i.fa.fa-pencil
+                        | Post
     script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
     script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js')
     script(type='text/javascript').

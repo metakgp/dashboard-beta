@@ -111,6 +111,20 @@ exports.postSignup = (req, res, next) => {
     var formData = querystring.stringify(form);
     var contentLength = formData.length;
 
+    // request({
+    //     headers: {
+    //         'Content-Length': contentLength,
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //     },
+    //     uri: buysellurl + 'createuser/',
+    //     body: formData,
+    //     method: 'POST'
+    // }, function(error, response, body) {
+    //     if (!error && response.statusCode == 200) {
+    //         console.log(body)
+    //     }
+    // });
+
     User.findOne({ email: req.body.email }, (err, existingUser) => {
         if (err) {
             return next(err);
