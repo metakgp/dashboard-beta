@@ -99,7 +99,7 @@ def main(args):
 
     timetable_dict = {}
 
-    for i in range(1, len(rows)):
+    for i in range(1, len(rows) - 1):
         timetable_dict[days[i]] = {}
         tds = rows[i].findAll('td')
         time = 0

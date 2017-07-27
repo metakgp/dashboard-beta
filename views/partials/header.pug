@@ -34,8 +34,8 @@ nav.navbar.navbar-default.navbar-fixed
               if user.profile.picture
                 img(src=user.profile.picture)
               else
-                img(src=user.gravatar(60))
-              span= user.profile.name || user.email || user.id
+                img(src=user.gravatar(30))
+              span(class='header-image')= user.profile.name || user.email || user.id
               i.caret
             ul.dropdown-menu
               li
