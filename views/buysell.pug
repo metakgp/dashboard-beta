@@ -1,174 +1,178 @@
 extends layout
 
 block content
-    style.
-        .modal-body {
-            max-height: calc(100vh - 210px);
-            overflow-y: auto;
-            }
-        .modal-backdrop, .hidden {
-            display: none;
-            z-index: 0 !important;
-            }
-        table td {
-            border-top: none !important;
-        }
-    div(ng-controller='buysellController')
-        ul.nav.nav-tabs.nav-justified(style='margin-bottom: 30px;')
-            li(ng-class='{active : selectedTab(1)}')
-                a(href, ng-click='selectTab(1);displayBids()') View bids
-            li(ng-class='{active : selectedTab(2)}')
-                a(href, ng-click='selectTab(2)') Create offer
-            li(ng-class='{active : selectedTab(3)}')
-                a(href, ng-click='selectTab(3);getAllOffers()') View offers
-        .container-fluid(ng-show='selectedTab(1)&&displayBidsResponse')
-                .row
-                    .col-md-10.col-md-offset-1
-                        .content.table-responsive.table-full-width
-                            table#bids_feed.table.table-hover(cellspacing='0', width='100%')
-                                thead
-                                    tr
-                                        th Products for Sale
-                                tbody
-                                    tr(ng-repeat='(i, post) in displayBidsResponse track by $index')
-                                        td
-                                            .card.card-outline-primary.text-xs-center.animated.bounceInUp(style='visibility: visible; animation-name: bounceInUp;')
-                                                #naarad-card.card-block
-                                                    .row
-                                                        .col-md-2(ng-show='!isUndefinedOrNull(post.pic)')
-                                                            img.card-img-top.img-responsive.b-lazy(src='images/ripple.gif', ng-src='{{post.pic}}')
-                                                        .col-md-6(ng-show='!isUndefinedOrNull(post.pic)')
-                                                            h4.card-title
-                                                                | {{post.fields.title}} 
-                                                                span.label.label-default {{post.fields.price}}
-                                                            h6.card-subtitle.mb-2.text-muted Posted on {{post.fields.posted_date}} by {{post.fields.seller}}
-                                                            p.card-text
-                                                                | {{post.fields.description}}
-                                                        .col-md-4(ng-show='!isUndefinedOrNull(post.pic)')
-                                                            form
-                                                                .form-group
-                                                                    input.form-control(name='bidsList_{{$index}}', placeholder='Your quoted price', type='text')
-                                                            button.btn.btn-primary(type="button", ng-click="sendInterest(i, post.pk)")
-                                                                | I'm interested
-                                                        .col-md-8(ng-show='isUndefinedOrNull(post.pic)')
-                                                            h4.card-title
-                                                                | {{post.fields.title}} 
-                                                                span.label.label-default {{post.fields.price}}
-                                                            h6.card-subtitle.mb-2.text-muted Posted on {{post.fields.posted_date}} by {{post.fields.seller}}
-                                                            p.card-text
-                                                                | {{post.fields.description}}
-                                                        .col-md-4(ng-show='isUndefinedOrNull(post.pic)')
-                                                            form
-                                                                .form-group
-                                                                    input.form-control(name='bidsList_{{$index}}', placeholder='Your quoted price', type='text')
-                                                            button.btn.btn-primary(type="button", ng-click="sendInterest(i, post.pk)")
-                                                                | I'm interested
-                            table#notifications_feed.hidden.table.table-striped.table-hover(cellspacing='0', width='100%')
-                                thead
-                                    tr
-                                        th Your notifications
-                                tbody
-                                    tr(ng-repeat='post in naaradData')
-                                        td X was interested on your product Y, on {{post.real_date}} at {{post.real_time}}
-                            |                                     
-                            .bd-example
-                                #big.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-                                    .modal-dialog.modal-lg(role='document')
-                                        .modal-content
-                                            .modal-header
-                                                button.close(type='button', data-dismiss='modal', aria-label='Close')
-                                                    span(aria-hidden='true') &times;
-                                                |                                                         
-                                                h4#exampleModalLabel.modal-title New message
-                                            |                                                     
-                                            .modal-body
-                                                .row
-                                                    #pic.col-lg-4.col-sm-12(style='border:none; opacity: 1;')
-                                                        .card
-                                                            img.card-img-top.img-fluid(src='', width='100%', alt='')
-                                                    |                                                             
-                                                    #content.col-lg-8.col-sm-12
-                                                        .card.text-xs-center(style='border:none;')
-                                                            .card-block
-                                                                p.card-text
-                                                                    | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-                                            |                                                     
-                                            .modal-footer
-                                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-        form.form-horizontal(ng-show='selectedTab(2)')
-            .form-group
-                .col-sm-offset-1.col-sm-10
-                    label.col-sm-2.control-label(for='title') Title
-                    .col-sm-4
-                        input.form-control(ng-model='title', type='text', name='title', id='title')
-                    label.col-sm-2.control-label(for='price') Price
-                    .col-sm-4
-                        input.form-control(ng-model='price', type='number', name='price', id='price')
-            .form-group
-                .col-sm-offset-1.col-sm-10
-                    label.col-sm-2.control-label(for='description') Description
-                    .col-sm-10
-                        input.form-control(ng-model='description', type='text', name='description', id='description')
-            .form-group
-                .col-sm-offset-1.col-sm-10
-                    label.col-sm-2.control-label(for='imgurl') Image URL
-                    .col-sm-10
-                        input.form-control(ng-model='imgurl', type='text', name='imgurl', id='imgurl')
-            .form-group
-                .col-sm-offset-3.col-sm-7
-                    button.col-sm-3.btn.btn-block.btn-primary(type='button', ng-click='createOffer()')
-                        i.fa.fa-pencil
-                        | Post
-    script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
-    script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js')
-    script(type='text/javascript').
-            $('#big').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var source = button.data('source') // Extract info from data-* attributes
-            var message = button.data('message')
-            var img = button.data('img')
-            var modal = $(this)
-            if(img==0) {
-            modal.find("#pic").removeClass("col-lg-4")
-            modal.find("#pic").removeClass("col-sm-12")
-            modal.find("#content").removeClass("col-lg-8")
-            modal.find("#content").addClass("col-lg-12")
-            modal.find("#pic").hide()
-            }
-            else {
-            modal.find("#pic").addClass("col-lg-4")
-            modal.find("#pic").addClass("col-sm-12")
-            modal.find("#content").removeClass("col-lg-12")
-            modal.find("#content").addClass("col-lg-8")
-            modal.find("#pic").show()
-            $('#big img').attr('src', img);
-            }
-            modal.find('.modal-title').text(source)
-            modal.find('.card-text').html(message)
-            })
+    .row
+        .col-xs-10.col-xs-offset-1
+            div(class='text-center vertical-center')
+                h1(style='color: #999;') Coming Soon
+    //- style.
+    //-     .modal-body {
+    //-         max-height: calc(100vh - 210px);
+    //-         overflow-y: auto;
+    //-         }
+    //-     .modal-backdrop, .hidden {
+    //-         display: none;
+    //-         z-index: 0 !important;
+    //-         }
+    //-     table td {
+    //-         border-top: none !important;
+    //-     }
+    //- div(ng-controller='buysellController')
+    //-     ul.nav.nav-tabs.nav-justified(style='margin-bottom: 30px;')
+    //-         li(ng-class='{active : selectedTab(1)}')
+    //-             a(href, ng-click='selectTab(1);displayBids()') View bids
+    //-         li(ng-class='{active : selectedTab(2)}')
+    //-             a(href, ng-click='selectTab(2)') Create offer
+    //-         li(ng-class='{active : selectedTab(3)}')
+    //-             a(href, ng-click='selectTab(3);getAllOffers()') View offers
+    //-     .container-fluid(ng-show='selectedTab(1)&&displayBidsResponse')
+    //-             .row
+    //-                 .col-md-10.col-md-offset-1
+    //-                     .content.table-responsive.table-full-width
+    //-                         table#bids_feed.table.table-hover(cellspacing='0', width='100%')
+    //-                             thead
+    //-                                 tr
+    //-                                     th Products for Sale
+    //-                             tbody
+    //-                                 tr(ng-repeat='(i, post) in displayBidsResponse track by $index')
+    //-                                     td
+    //-                                         .card.card-outline-primary.text-xs-center.animated.bounceInUp(style='visibility: visible; animation-name: bounceInUp;')
+    //-                                             #naarad-card.card-block
+    //-                                                 .row
+    //-                                                     .col-md-2(ng-show='!isUndefinedOrNull(post.pic)')
+    //-                                                         img.card-img-top.img-responsive.b-lazy(src='images/ripple.gif', ng-src='{{post.pic}}')
+    //-                                                     .col-md-6(ng-show='!isUndefinedOrNull(post.pic)')
+    //-                                                         h4.card-title
+    //-                                                             | {{post.fields.title}} 
+    //-                                                             span.label.label-default {{post.fields.price}}
+    //-                                                         h6.card-subtitle.mb-2.text-muted Posted on {{post.fields.posted_date}} by {{post.fields.seller}}
+    //-                                                         p.card-text
+    //-                                                             | {{post.fields.description}}
+    //-                                                     .col-md-4(ng-show='!isUndefinedOrNull(post.pic)')
+    //-                                                         form
+    //-                                                             .form-group
+    //-                                                                 input.form-control(name='bidsList_{{$index}}', placeholder='Your quoted price', type='text')
+    //-                                                         button.btn.btn-primary(type="button", ng-click="sendInterest(i, post.pk)")
+    //-                                                             | I'm interested
+    //-                                                     .col-md-8(ng-show='isUndefinedOrNull(post.pic)')
+    //-                                                         h4.card-title
+    //-                                                             | {{post.fields.title}} 
+    //-                                                             span.label.label-default {{post.fields.price}}
+    //-                                                         h6.card-subtitle.mb-2.text-muted Posted on {{post.fields.posted_date}} by {{post.fields.seller}}
+    //-                                                         p.card-text
+    //-                                                             | {{post.fields.description}}
+    //-                                                     .col-md-4(ng-show='isUndefinedOrNull(post.pic)')
+    //-                                                         form
+    //-                                                             .form-group
+    //-                                                                 input.form-control(name='bidsList_{{$index}}', placeholder='Your quoted price', type='text')
+    //-                                                         button.btn.btn-primary(type="button", ng-click="sendInterest(i, post.pk)")
+    //-                                                             | I'm interested
+    //-                         table#notifications_feed.hidden.table.table-striped.table-hover(cellspacing='0', width='100%')
+    //-                             thead
+    //-                                 tr
+    //-                                     th Your notifications
+    //-                             tbody
+    //-                                 tr(ng-repeat='post in naaradData')
+    //-                                     td X was interested on your product Y, on {{post.real_date}} at {{post.real_time}}
+    //-                         |                                     
+    //-                         .bd-example
+    //-                             #big.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+    //-                                 .modal-dialog.modal-lg(role='document')
+    //-                                     .modal-content
+    //-                                         .modal-header
+    //-                                             button.close(type='button', data-dismiss='modal', aria-label='Close')
+    //-                                                 span(aria-hidden='true') &times;
+    //-                                             |                                                         
+    //-                                             h4#exampleModalLabel.modal-title New message
+    //-                                         |                                                     
+    //-                                         .modal-body
+    //-                                             .row
+    //-                                                 #pic.col-lg-4.col-sm-12(style='border:none; opacity: 1;')
+    //-                                                     .card
+    //-                                                         img.card-img-top.img-fluid(src='', width='100%', alt='')
+    //-                                                 |                                                             
+    //-                                                 #content.col-lg-8.col-sm-12
+    //-                                                     .card.text-xs-center(style='border:none;')
+    //-                                                         .card-block
+    //-                                                             p.card-text
+    //-                                                                 | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
+    //-                                         |                                                     
+    //-                                         .modal-footer
+    //-                                             button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+    //-     form.form-horizontal(ng-show='selectedTab(2)')
+    //-         .form-group
+    //-             .col-sm-offset-1.col-sm-10
+    //-                 label.col-sm-2.control-label(for='title') Title
+    //-                 .col-sm-4
+    //-                     input.form-control(ng-model='title', type='text', name='title', id='title')
+    //-                 label.col-sm-2.control-label(for='price') Price
+    //-                 .col-sm-4
+    //-                     input.form-control(ng-model='price', type='number', name='price', id='price')
+    //-         .form-group
+    //-             .col-sm-offset-1.col-sm-10
+    //-                 label.col-sm-2.control-label(for='description') Description
+    //-                 .col-sm-10
+    //-                     input.form-control(ng-model='description', type='text', name='description', id='description')
+    //-         .form-group
+    //-             .col-sm-offset-1.col-sm-10
+    //-                 label.col-sm-2.control-label(for='imgurl') Image URL
+    //-                 .col-sm-10
+    //-                     input.form-control(ng-model='imgurl', type='text', name='imgurl', id='imgurl')
+    //-         .form-group
+    //-             .col-sm-offset-3.col-sm-7
+    //-                 button.col-sm-3.btn.btn-block.btn-primary(type='button', ng-click='createOffer()')
+    //-                     i.fa.fa-pencil
+    //-                     | Post
+    //- script(src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js')
+    //- script(src='https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js')
+    //- script(type='text/javascript').
+    //-         $('#big').on('show.bs.modal', function (event) {
+    //-         var button = $(event.relatedTarget) // Button that triggered the modal
+    //-         var source = button.data('source') // Extract info from data-* attributes
+    //-         var message = button.data('message')
+    //-         var img = button.data('img')
+    //-         var modal = $(this)
+    //-         if(img==0) {
+    //-         modal.find("#pic").removeClass("col-lg-4")
+    //-         modal.find("#pic").removeClass("col-sm-12")
+    //-         modal.find("#content").removeClass("col-lg-8")
+    //-         modal.find("#content").addClass("col-lg-12")
+    //-         modal.find("#pic").hide()
+    //-         }
+    //-         else {
+    //-         modal.find("#pic").addClass("col-lg-4")
+    //-         modal.find("#pic").addClass("col-sm-12")
+    //-         modal.find("#content").removeClass("col-lg-12")
+    //-         modal.find("#content").addClass("col-lg-8")
+    //-         modal.find("#pic").show()
+    //-         $('#big img').attr('src', img);
+    //-         }
+    //-         modal.find('.modal-title').text(source)
+    //-         modal.find('.card-text').html(message)
+    //-         })
 
-            $('#menu').append('<li id="notifications"><a href=""><i class="fa fa-bell"></i><p class="hidden-lg hidden-md">Notifications</p></a></li><li id="bids" class="hidden"><a href=""><i class="fa fa-globe"></i><p class="hidden-lg hidden-md">Bids</p></a></li>');
+    //-         $('#menu').append('<li id="notifications"><a href=""><i class="fa fa-bell"></i><p class="hidden-lg hidden-md">Notifications</p></a></li><li id="bids" class="hidden"><a href=""><i class="fa fa-globe"></i><p class="hidden-lg hidden-md">Bids</p></a></li>');
 
 
-            $('#bids').click(function() {
-                $('#bids_feed').removeClass('hidden');
-                $('#notifications_feed').addClass('hidden');
-                $('#bids').addClass('hidden');
-                $('#notifications').removeClass('hidden');              
-            });
+    //-         $('#bids').click(function() {
+    //-             $('#bids_feed').removeClass('hidden');
+    //-             $('#notifications_feed').addClass('hidden');
+    //-             $('#bids').addClass('hidden');
+    //-             $('#notifications').removeClass('hidden');              
+    //-         });
 
-            $('#notifications').click( function(){
-                $('#bids_feed').addClass('hidden');
-                $('#notifications_feed').removeClass('hidden');
-                $('#notifications').addClass('hidden');
-                $('#bids').removeClass('hidden');
-            });
+    //-         $('#notifications').click( function(){
+    //-             $('#bids_feed').addClass('hidden');
+    //-             $('#notifications_feed').removeClass('hidden');
+    //-             $('#notifications').addClass('hidden');
+    //-             $('#bids').removeClass('hidden');
+    //-         });
 
-    //- script(src='https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.1/blazy.js')
-    script(src='js/lib/blazy.js')
-    script.
-        ;(function() {
-        var bLazy = new Blazy();
-        })();
+    //- //- script(src='https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.1/blazy.js')
+    //- script(src='js/lib/blazy.js')
+    //- script.
+    //-     ;(function() {
+    //-     var bLazy = new Blazy();
+    //-     })();
 
 

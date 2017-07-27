@@ -1,7 +1,13 @@
 extends layout
 
 block content
+    .row
+        .col-xs-10.col-xs-offset-1
+            div(class='text-center vertical-center')
+                h1(style='color: #999;') No new events nearby soon
     .row(ng-controller='calendarController', ng-init='getAllEvents()', style='margin-top: 30px;')
+        div(class='text-center')
+            h2 Other events you might be interested in
         .col-xs-10.col-xs-offset-1
             .jumbotron(ng-repeat='(i, campusEvent) in successAllEvents track by $index', style='padding: 10px;')
                 .row

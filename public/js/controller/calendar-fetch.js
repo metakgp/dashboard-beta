@@ -1,6 +1,6 @@
 angular.module('calendar', [])
     .controller('calendarController', ['$scope', '$http', function($scope, $http) {
-        const requesturl = 'http://139.59.35.210/';
+        const requesturl = 'http://127.0.0.1:5000/';
         const googleurl = 'https://maps.googleapis.com/maps/api/staticmap?';
         console.log("Initiating get all events");
         var getAllMaps = function() {

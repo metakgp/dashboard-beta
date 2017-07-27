@@ -1,46 +1,50 @@
 extends layout
 
 block content
-    script(type='text/javascript').
-      (function ping() {
-        $.getJSON("http://desolate-reef-33512.herokuapp.com/driverapi", function(data) {
-            var items = [];
-            console.log("Starting request");
-            console.log(new Date().toLocaleString());
-            $.each(data, function(key, val) {
-                if (val["status"] == "Free") {
-                    items.push("<tr><td>" + val["name"] + "</td><td>" + val["number"] + "</td><td>" + val["status"] + "&nbsp; <i class='fa fa-circle text-success'></i></td></tr>");
-                }
-            });
-            $.each(data, function(key, val) {
-                if (val["status"] != "Free") {
-                    items.push("<tr><td>" + val["name"] + "</td><td>" + val["number"] + "</td><td> Busy &nbsp;<i class='fa fa-circle text-danger'></i></td></tr>");
-                }
-            });
-            console.log("Ending request");
-            console.log(new Date().toLocaleString());
-            $('#feed-wrapper').html("<table id='feed' class='table table-striped table-bordered' cellspacing='0' width='100%'><thead><tr><th>Cab Driver</th><th>Contact Number</th><th>Status</th></tr></thead><tbody>" + items.join("") + "</tbody></table>");
-        });
-        setTimeout(ping, 1000);
-      })();
-    .content
-        .container-fluid
-            .row
-              .col-md-6.col-md-offset-3
-                #ratings
-                  h1(style='text-align: center;') Driver Status
-                  p As the name suggests, Driver Status is a <b>cab booking utility</b> that shows the real-time availability of drivers. The cab drivers update their status on their Android App to Free / Busy respectively - hence, making it easier for those who would like to book a cab.
-            <br>
-            .row
-              .col-md-12
-                  #feed-wrapper.content.table-responsive.table-full-width
-                    table#feed.table.table-striped.table-bordered(cellspacing='0', width='100%')
-                      thead
-                        tr
-                          th Cab Driver
-                          |                                             
-                          th Contact Number
-                          |                                             
-                          th Status
-                      |                                     
-                      tbody
+    .row
+        .col-xs-10.col-xs-offset-1
+            div(class='text-center vertical-center')
+                h1(style='color: #999;') Coming Soon
+    //- script(type='text/javascript').
+    //-   (function ping() {
+    //-     $.getJSON("http://desolate-reef-33512.herokuapp.com/driverapi", function(data) {
+    //-         var items = [];
+    //-         console.log("Starting request");
+    //-         console.log(new Date().toLocaleString());
+    //-         $.each(data, function(key, val) {
+    //-             if (val["status"] == "Free") {
+    //-                 items.push("<tr><td>" + val["name"] + "</td><td>" + val["number"] + "</td><td>" + val["status"] + "&nbsp; <i class='fa fa-circle text-success'></i></td></tr>");
+    //-             }
+    //-         });
+    //-         $.each(data, function(key, val) {
+    //-             if (val["status"] != "Free") {
+    //-                 items.push("<tr><td>" + val["name"] + "</td><td>" + val["number"] + "</td><td> Busy &nbsp;<i class='fa fa-circle text-danger'></i></td></tr>");
+    //-             }
+    //-         });
+    //-         console.log("Ending request");
+    //-         console.log(new Date().toLocaleString());
+    //-         $('#feed-wrapper').html("<table id='feed' class='table table-striped table-bordered' cellspacing='0' width='100%'><thead><tr><th>Cab Driver</th><th>Contact Number</th><th>Status</th></tr></thead><tbody>" + items.join("") + "</tbody></table>");
+    //-     });
+    //-     setTimeout(ping, 1000);
+    //-   })();
+    //- .content
+    //-     .container-fluid
+    //-         .row
+    //-           .col-md-6.col-md-offset-3
+    //-             #ratings
+    //-               h1(style='text-align: center;') Driver Status
+    //-               p As the name suggests, Driver Status is a <b>cab booking utility</b> that shows the real-time availability of drivers. The cab drivers update their status on their Android App to Free / Busy respectively - hence, making it easier for those who would like to book a cab.
+    //-         <br>
+    //-         .row
+    //-           .col-md-12
+    //-               #feed-wrapper.content.table-responsive.table-full-width
+    //-                 table#feed.table.table-striped.table-bordered(cellspacing='0', width='100%')
+    //-                   thead
+    //-                     tr
+    //-                       th Cab Driver
+    //-                       |                                             
+    //-                       th Contact Number
+    //-                       |                                             
+    //-                       th Status
+    //-                   |                                     
+    //-                   tbody

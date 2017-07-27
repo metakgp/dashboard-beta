@@ -6,7 +6,7 @@ angular.module('cabShare', [])
 
         var minDate = new Date().getDate();
         $scope.minDateStr = String(minDate);
-        const requesturl = 'http://139.59.79.173/';
+        const requesturl = 'http://127.0.0.1:5000/';
         $scope.searchSelectedDestination = null;
         $scope.postSelectedDestination = null;
         $scope.searchButton = "Destination";
