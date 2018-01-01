@@ -259,6 +259,7 @@ var makeICS = function(res, user, tempdir, scriptdir) {
     options = {
         mode: 'text',
         scriptPath: 'scripts/',
+	pythonPath: '/usr/bin/python3',
         args: [user, tempdir, scriptdir]
     };
     var pyshell = new PythonShell('generate_ics.py', options);
@@ -278,6 +279,7 @@ app.get('/api/getSecret/:user', function(req, res) {
     var options = {
         mode: 'text',
         scriptPath: 'scripts/',
+	pythonPath: '/usr/bin/python3',
         args: [req.params.user, path.resolve('tempstore/cookies/')]
     };
     var pyshell = new PythonShell('getSecurityQuestion.py', options);
@@ -297,6 +299,7 @@ app.get('/api/makeTimeTable/:user/:pass/:secret/:sessionid', function(req, res) 
     var options = {
         mode: 'text',
         scriptPath: 'scripts/',
+	pythonPath: '/usr/bin/python3',
         args: [req.params.user, req.params.pass, req.params.secret, req.params.sessionid, path.resolve('tempstore/')]
     };
     var pyshell = new PythonShell('getTimetable.py', options);
