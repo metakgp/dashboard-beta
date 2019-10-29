@@ -37,7 +37,7 @@
     "lastfm": "^0.9.2",
     "lob": "^3.9.0",
     "lusca": "^1.4.1",
-    "mongoose": "^4.6.6",
+    "mongoose": "^5.7.5",
     "morgan": "^1.7.0",
     "multer": "^1.2.0",
     "node-foursquare": "^0.3.0",
