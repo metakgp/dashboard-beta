@@ -14,4 +14,4 @@ pytz == 2017.3
 
 # getSecurityQuestion.py: 2,3
 # getTimetable.py: 2,3
-requests == 2.20.0
+requests == 2.68.0
