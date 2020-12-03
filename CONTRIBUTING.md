@@ -16,6 +16,6 @@
 
 8. In case, the parent repository's `master` branch has changed by the time you reach step 6, pull those changes into your local `master` branch and merge your `patch` branch into `master` - resolve merge conflicts, if any.
 
-- Active contributors would be rewarded with the tag of **Collabrators**
+- Active contributors would be rewarded with the tag of **Collaborators**.
 
 - Bug fixes , Issues , Issue solutions , Optimizations & Enhancements are always welcome.
