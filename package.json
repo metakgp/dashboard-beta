@@ -55,7 +55,7 @@
     "passport-openid": "^0.4.0",
     "passport-twitter": "^1.0.4",
     "paypal-rest-sdk": "^1.7.0",
-    "pug": "^2.0.0-beta6",
+    "pug": "^3.0.1",
     "python-shell": "^0.4.0",
     "request": "^2.78.0",
     "stripe": "^4.12.0",
