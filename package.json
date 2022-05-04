@@ -14,7 +14,7 @@
     "postinstall": "npm rebuild node-sass"
   },
   "dependencies": {
-    "angular": "^1.7.9",
+    "angular": "^1.8.3",
     "angularjs-datepicker": "^2.1.15",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.4.7",
